@@ -1,0 +1,6 @@
+lordif-package          Logistic Regression Differential Item Functioning using IRT
+Anxiety                 PROMIS Anxiety Scale
+lordif                  performs Logistic Regression DIF using IRT
+montecarlo              performs Monte Carlo simulations to obtain empirical cutoff thresholds
+plotDIF                 plots diagnostic graphs for DIF items
+plotMC                  plots Monte Carlo output
