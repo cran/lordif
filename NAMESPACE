@@ -1,0 +1,10 @@
+# Exported functions
+export(lordif, montecarlo, plotDIF, plotMC,
+       calcprob, calctheta, collapse, equate,    
+       extract, getcutoff, probgrm, recode, rundif, runolr,    
+       separate, tcc )
+
+# Imported functions
+importFrom("ltm", grm)
+
+

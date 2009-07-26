@@ -1,0 +1,62 @@
+\name{runolr}
+\alias{runolr}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{ runs ordinal logistic regression models }
+\description{
+  Runs ordinal logistic regression models and produces DIF statistics and effect size measures
+}
+\usage{
+runolr(rv, ev, gr)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{rv}{ a response variable }
+  \item{ev}{ an explanatory variable (e.g., conditioning variable) }
+  \item{gr}{ a vector of group identifiers }
+}
+\details{
+  Model 1: ev  
+  Model 2: ev + gr  
+  Model 3: ev*gr or equivalently ev + gr + ev*gr
+}
+\value{
+  Returns a list of the following components:
+  \item{chi12}{prob for the LR Chi-square comparing Model 1 vs. Model 2}
+  \item{chi13}{prob for the LR Chi-square comparing Model 1 vs. Model 3}
+  \item{chi23}{prob for the LR Chi-square comparing Model 2 vs. Model 3}
+  \item{beta12}{proportional change in the coefficient for ev}
+  \item{pseudo1.CoxSnell}{Cox & Snell psudo R-square for Model 1}
+  \item{pseudo2.CoxSnell}{Cox & Snell psudo R-square for Model 2}
+  \item{pseudo3.CoxSnell}{Cox & Snell psudo R-square for Model 1}
+  \item{pseudo1.Nagelkerke}{Nagelkerke psudo R-square for Model 1}
+  \item{pseudo2.Nagelkerke}{Nagelkerke psudo R-square for Model 2}
+  \item{pseudo3.Nagelkerke}{Nagelkerke psudo R-square for Model 3}
+  \item{pseudo1.McFadden}{McFadden psudo R-square for Model 1}
+  \item{pseudo2.McFadden}{McFadden psudo R-square for Model 2}
+  \item{pseudo3.McFadden}{McFadden psudo R-square for Model 3}
+  \item{pseudo12.CoxSnell}{Cox & Snell R-square change from Model 1 to Model 2}
+  \item{pseudo13.CoxSnell}{Cox & Snell R-square change from Model 1 to Model 3}
+  \item{pseudo23.CoxSnell}{Cox & Snell R-square change from Model 2 to Model 3}
+  \item{pseudo12.Nagelkerke}{Nagelkerke R-square change from Model 1 to Model 2}
+  \item{pseudo13.Nagelkerke}{Nagelkerke R-square change from Model 1 to Model 3}
+  \item{pseudo23.Nagelkerke}{Nagelkerke R-square change from Model 2 to Model 3}
+  \item{pseudo12.McFadden}{McFadden R-square change from Model 1 to Model 2}
+  \item{pseudo13.McFadden}{McFadden R-square change from Model 1 to Model 3}
+  \item{pseudo23.McFadden}{McFadden R-square change from Model 2 to Model 3}
+  \item{df12}{df for the LR Chi-square comparing Model 1 and Model 2}
+  \item{df13}{df for the LR Chi-square comparing Model 1 and Model 3}
+  \item{df23}{df for the LR Chi-square comparing Model 2 and Model 3}
+}
+\references{ 
+  Choi, S. W., Gibbons, L. E., & Crane, P. K. (April, 2009). Development of freeware for an iterative hybrid ordinal logistic regression/IRT DIF. Paper Presented at the National Council of Measurement in Education. San Diego, CA.
+  
+  Crane, P. K., Gibbons, L. E., Jolley, L., & van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
+}
+\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\seealso{ \code{\link{rundif}},  \code{\link{lordif}} }
+\examples{
+##
+\dontrun{runolr(rv, ev, gr)}
+}
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
