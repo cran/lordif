@@ -1,4 +1,4 @@
-`runolr` <-
+runolr <-
 function(rv,ev,gr) {
 ng<-length(table(gr))
 nobs<-length(rv)

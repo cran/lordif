@@ -1,4 +1,4 @@
-`montecarlo` <-
+montecarlo <-
 function(obj,alpha=0.01,nr=100) {
 options<-obj$options
 ipar<-obj$ipar

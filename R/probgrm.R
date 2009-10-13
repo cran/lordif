@@ -1,4 +1,4 @@
-`probgrm` <-
+probgrm <-
 function(theta,a,cb) {
 if (any(is.na(theta))) stop("theta is empty")
 if (a<=0 || is.na(a)) stop("slope is missing or negative")

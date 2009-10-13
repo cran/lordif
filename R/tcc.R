@@ -1,4 +1,4 @@
-`tcc` <-
+tcc <-
 function(a,cb,theta) {
 ni<-length(a)
 T<-numeric(length(theta))

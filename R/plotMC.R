@@ -1,4 +1,4 @@
-`plotMC` <-
+plotMC <-
 function(obj,mfrow=c(3,1),cexp=1.0) {
 nr<-obj$nr
 Item<-1:dim(obj$cutoff)[1]
@@ -26,3 +26,4 @@ points(Item,obj$cutoff$pseudo23.CoxSnell,type="b",col="red",lty=3,pch=3)
 max.beta<-max(pretty(obj$cutoff$beta12))
 plot(Item,obj$cutoff$beta12,ylab=substitute(Delta(beta[1])),type="b",ylim=c(0,max.beta))
 }
+

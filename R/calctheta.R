@@ -1,4 +1,4 @@
-`calctheta` <-
+calctheta <-
 function(ipar,resp.data,theta,prior.mean=0.0,prior.sd=1.0) {
 prior<-dnorm((theta-prior.mean)/prior.sd) 
 pp<-calcprob(ipar,theta)

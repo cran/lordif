@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.1-1\cr
-Date: \tab 2009-03-08\cr
+Version: \tab 0.1-2\cr
+Date: \tab 2009-10-13\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -40,7 +40,7 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 }
 \keyword{ package }
 \seealso{
-  \code{\link[ltm:ltm-package]{ltm}},  \code{\link[Design:Design-package]{Design}}
+  \code{\link[ltm:ltm-package]{ltm}},  \code{\link[Design:Design]{Design}}
 }
 \examples{
 ##data(Anxiety)
@@ -52,5 +52,5 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 #generates plots for DIF items, reference="Younger" & focal="Older"
 \dontrun{plotDIF(sample.run,labels=c("Younger","Older"))} 
 \dontrun{montecarlo(age.dif,alpha=0.05,nr=500)} 
-##this takes about 10 minutes on my computer
+##this may take a few minutes
 }

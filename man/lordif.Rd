@@ -7,7 +7,7 @@
 }
 \usage{lordif(resp.data, group, selection=NULL,  
   criterion="Chisqr", pseudo.R2="McFadden",  
-  alpha=0.01, beta.change=0.1, R2.change=0.035,  
+  alpha=0.01, beta.change=0.1, R2.change=0.02,  
   maxIter=10, minCell=5, minTheta=-4.0, maxTheta=4.0, inc=0.1)}
 %- maybe also 'usage' for other objects documented here.
 \arguments{

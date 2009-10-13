@@ -1,4 +1,4 @@
-`extract` <-
+extract <-
 function(ipar) {
 ncat<-unlist(lapply(ipar$coefficients,length))
 maxCat<-max(ncat)
