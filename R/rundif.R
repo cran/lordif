@@ -1,4 +1,4 @@
-`rundif` <-
+rundif <-
 function(item,resp,theta,gr,criterion,alpha,beta.change,pseudo.R2,R2.change) {
 ncat<-apply(resp,2,max,na.rm=T) 
 ni<-length(item)

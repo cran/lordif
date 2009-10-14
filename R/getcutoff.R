@@ -1,4 +1,4 @@
-`getcutoff` <-
+getcutoff <-
 function(stat,alpha,reverse) {
 nr<-length(stat)
 if (alpha<=0 | alpha>=1) stop("alpha must be a fraction (0-1)")

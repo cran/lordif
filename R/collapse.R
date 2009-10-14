@@ -1,4 +1,4 @@
-`collapse` <-
+collapse <-
 function(resp,group,minCell) {
 freq.table<-table(group,resp)
 if (ncol(freq.table)<2) stop("valid response categories must be >= 2")

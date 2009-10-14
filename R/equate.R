@@ -1,4 +1,4 @@
-`equate` <-
+equate <-
 function(ipar.to,ipar.from,theta) {
 SL<-function(AK) {
 a.to<-ipar.to$a

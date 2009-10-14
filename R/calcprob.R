@@ -1,4 +1,4 @@
-`calcprob` <-
+calcprob <-
 function(ipar,theta){
 ni<-nrow(ipar) 
 maxCat<-ncol(ipar) 
