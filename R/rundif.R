@@ -41,11 +41,11 @@ pseudo23.McFadden[i]<-output$pseudo23.McFadden
 }
 }
 if (toupper(criterion)=="CHISQR") flag.post<-(chi12<=alpha | chi13<=alpha | chi23<=alpha)
-else if (toupper(criterion)=="BETA") flag.post<-(beta12>=beta.change)
+else if (toupper(criterion)=="BETA") flag.post<-beta12>=beta.change
 else if (toupper(criterion)=="R2") {
-if (toupper(pseudo.R2)=="MCFADDEN") flag.post<-(pseudo13.McFadden>=R2.change)
-else if (toupper(pseudo.R2)=="NAGELKERKE") flag.post<-(pseudo13.Nagelkerke>=R2.change)
-else if (toupper(pseudo.R2)=="COXSNELL") flag.post<-(pseudo13.CoxSnell>=R2.change)
+if (toupper(pseudo.R2)=="MCFADDEN") flag.post<-pseudo13.McFadden>=R2.change
+else if (toupper(pseudo.R2)=="NAGELKERKE") flag.post<-pseudo13.Nagelkerke>=R2.change
+else if (toupper(pseudo.R2)=="COXSNELL") flag.post<-pseudo13.CoxSnell>=R2.change
 else {
 warning("invalid pseudo R^2 is selected: McFadden will be used instead")
 flag.post<-pseudo13.McFadden>=R2.change

@@ -74,7 +74,7 @@ lines(theta,tcc(apar[,1],apar[,-1],theta),lty=g,col=g)
 legend("bottomright",labels,lty=1:obj$ng,col=1:obj$ng,cex=cexp,bg="white")
 plot(theta,seq(0,sum(!is.na(gpar[,,1]))-ndif,along=theta),xlab="theta",ylab="TCC",type="n",main="DIF Items")
 for (g in 1:obj$ng) {
-lines(theta,tcc(gpar[,1,g],gpar[,-1,g],theta),lty=g,col=g)
+lines(theta,tcc(gpar[,1,g],matrix(gpar[,-1,g],nrow=ndif,byrow=T),theta),lty=g,col=g)
 }
 legend("bottomright",labels,lty=1:obj$ng,col=1:obj$ng,cex=cexp,bg="white")
 layout(matrix(c(1,2),ncol=2),widths=c(1,2))
