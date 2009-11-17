@@ -1,5 +1,5 @@
 plotDIF <-
-function(obj,labels=c("Reference","Focal"),cexp=0.8) {
+function(obj,labels=c("Reference","Focal"),cexp=0.8,lwd=1.0) {
 sumpp<-function(pp) {
 ws<-rowSums(pp*(col(pp)-1))
 return(ws)
@@ -21,7 +21,7 @@ gdensity[,i]<-density(unlist(gtheta[names(table(obj$group))[i]]),n=length(theta)
 }
 plot(theta,gdensity[,1],type="l",xlab="theta",ylab="Density",ylim=c(0,max(gdensity)),lty=1,col=1,main="Trait Distributions")
 for (g in 2:obj$ng) {
-lines(theta,gdensity[,g],lty=g,col=g)
+lines(theta,gdensity[,g],lty=g,col=g,lwd=lwd)
 }
 legend("topright",labels,lty=1:obj$ng,col=1:obj$ng,cex=0.7,bg="white")
 par(mfrow=c(2,2))
@@ -31,7 +31,7 @@ plot(theta,seq(0,ncat-1,along.with=theta),type="n",xlab="theta",ylab="Item Score
 for (g in 1:obj$ng) {
 gpar[i,,g]<-unlist(obj$ipar.sparse[which(itemnames==paste("I",difitems[i],".",g,sep="")),])
 pp[,i,1:ncat,g]<-probgrm(theta,gpar[i,1,g],gpar[i,2:ncat,g])
-lines(theta,sumpp(pp[,i,1:ncat,g]),lty=g,col=g)
+lines(theta,sumpp(pp[,i,1:ncat,g]),lty=g,col=g,lwd=lwd)
 }
 legend("bottomright",labels,lty=1:obj$ng,col=1:obj$ng,cex=0.7,bg="white")
 chi12<-paste(obj$stats[difitems[i],"df12"],")=",obj$stats[difitems[i],"chi12"],sep="")
@@ -46,12 +46,12 @@ text(min(theta),(ncat-1)*.9,substitute(paste("Pr(",chi[13]^2,",",chi13,",",R[13]
 text(min(theta),(ncat-1)*.8,substitute(paste("Pr(",chi[23]^2,",",chi23,",",R[23]^2,"=",pseudo23,sep="")),adj=c(0,1),cex=cexp)
 plot(theta,seq(0,ncat-1,along.with=theta),type="n",xlab="theta",ylab="Item Score",main="Differences in Item True Score Functions")
 for (g in 2:obj$ng) {
-lines(theta,abs(sumpp(pp[,i,1:ncat,1])-sumpp(pp[,i,1:ncat,g])),lty=g,col=g)
+lines(theta,abs(sumpp(pp[,i,1:ncat,1])-sumpp(pp[,i,1:ncat,g])),lty=g,col=g,lwd=lwd)
 }
 plot(theta,seq(0,1,along.with=theta),type="n",xlab="theta",ylab="Probability",main="Item Response Functions")
 for (g in 1:obj$ng) {
 for (k in 1:ncat) {
-lines(theta,pp[,i,k,g],lty=g,cex=0.1,col=g)
+lines(theta,pp[,i,k,g],lty=g,cex=0.1,col=g,lwd=lwd)
 }
 }
 for (g in 1:obj$ng) {
@@ -62,19 +62,19 @@ if (!is.na(gpar[i,k,g])) text(gpar[i,k,g],0,"|",col=g)
 }
 plot(theta,seq(0,ncat-1,along.with=theta),type="n",xlab="theta",ylab="Size",main="Impact (Weighted by Density)")
 for (g in 2:obj$ng) {
-lines(theta,gdensity[,g]*abs(sumpp(pp[,i,1:ncat,1])-sumpp(pp[,i,1:ncat,g])),lty=g,col=g)
+lines(theta,gdensity[,g]*abs(sumpp(pp[,i,1:ncat,1])-sumpp(pp[,i,1:ncat,g])),lty=g,col=g,lwd=lwd)
 }
 }
 par(mfrow=c(1,2))
 plot(theta,seq(0,sum(!is.na(obj$ipar))-obj$ni,along=theta),xlab="theta",ylab="TCC",type="n",main="All Items")
 for (g in 1:obj$ng) {
 apar<-rbind(cpar,gpar[,,g])
-lines(theta,tcc(apar[,1],apar[,-1],theta),lty=g,col=g)
+lines(theta,tcc(apar[,1],apar[,-1],theta),lty=g,col=g,lwd=lwd)
 }
 legend("bottomright",labels,lty=1:obj$ng,col=1:obj$ng,cex=cexp,bg="white")
 plot(theta,seq(0,sum(!is.na(gpar[,,1]))-ndif,along=theta),xlab="theta",ylab="TCC",type="n",main="DIF Items")
 for (g in 1:obj$ng) {
-lines(theta,tcc(gpar[,1,g],matrix(gpar[,-1,g],nrow=ndif,byrow=T),theta),lty=g,col=g)
+lines(theta,tcc(gpar[,1,g],matrix(gpar[,-1,g],nrow=ndif),theta),lty=g,col=g,lwd=lwd)
 }
 legend("bottomright",labels,lty=1:obj$ng,col=1:obj$ng,cex=cexp,bg="white")
 layout(matrix(c(1,2),ncol=2),widths=c(1,2))
@@ -84,7 +84,7 @@ plot(obj$calib$theta,difference,type="n",xlab="initial theta",ylab="initial - pu
 abline(h=0)
 abline(h=mean(obj$calib$theta-obj$calib.sparse$theta),lty=2)
 for (i in 1:obj$ng) {
-points(obj$calib$theta[obj$group==as.numeric(names(table(obj$group))[i])],difference[obj$group==as.numeric(names(table(obj$group))[i])],col=i,pch=i)
+points(obj$calib$theta[obj$group==as.numeric(names(table(obj$group))[i])],difference[obj$group==as.numeric(names(table(obj$group))[i])],col=i,pch=i,lwd=lwd)
 }
 legend("bottomright",labels,pch=1:obj$ng,col=1:obj$ng,cex=cexp,bg="white")
 }

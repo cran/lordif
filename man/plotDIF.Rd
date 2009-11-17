@@ -6,13 +6,14 @@
   plots diagnostic graphs for items identified as displaying DIF
 }
 \usage{
-plotDIF(obj, labels = c("Reference", "Focal"), cexp = 0.8)
+plotDIF(obj, labels = c("Reference", "Focal"), cexp = 0.8, lwd = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{obj}{ output from lordif }
   \item{labels}{ labels for group levels, e.g., c("Male","Female") }
   \item{cexp}{ character expansion factor, e.g., cexp=2 for two times a normal size }
+  \item{lwd}{ line width, e.g., lwd=2 for thicker lines for focal groups }
 }
 \details{
   Generates the following graphs IF there is one or more DIF items:
@@ -31,7 +32,7 @@ plotDIF(obj, labels = c("Reference", "Focal"), cexp = 0.8)
   Returns no object.
 }
 \references{ 
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (April, 2009). Development of freeware for an iterative hybrid ordinal logistic regression/IRT DIF. Paper Presented at the National Council of Measurement in Education. San Diego, CA.
+  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods.
 }
 \author{ Seung W. Choi <s-choi@northwestern.edu> }
 \note{ 

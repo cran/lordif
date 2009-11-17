@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.1-3\cr
-Date: \tab 2009-11-04\cr
+Version: \tab 0.1-4\cr
+Date: \tab 2009-11-12\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -34,7 +34,7 @@ Seung W. Choi, with contributions from
 Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 }
 \references{
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (April, 2009). Development of freeware for an iterative hybrid ordinal logistic regression/IRT DIF. Paper Presented at the National Council of Measurement in Education. San Diego, CA. 
+  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. 
   
   Crane, P. K., Gibbons, L. E., Jolley, L., & van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
