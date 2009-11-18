@@ -28,8 +28,7 @@ plotMC(obj, mfrow = c(3, 1), cexp = 1.0)
   Returns no object.
 }
 \references{ 
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (April, 2009). Development of freeware for an iterative hybrid ordinal logistic regression/IRT DIF. Paper Presented at the National Council of Measurement in Education. San Diego, CA.
-}
+  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. }
 \author{ Seung W. Choi <s-choi@northwestern.edu> }
 \note{ 
   obj is an object output from montecarlo

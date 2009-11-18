@@ -39,7 +39,7 @@ montecarlo(obj, alpha = 0.01, nr = 100)
   \item{nr}{number of replications}
   \item{cutoff}{thresholds for the statistics}
 }
-\references{ Choi, S. W., Gibbons, L. E., & Crane, P. K. (April, 2009). Development of freeware for an iterative hybrid ordinal logistic regression/IRT DIF. Paper Presented at the National Council of Measurement in Education. San Diego, CA. }
+\references{ Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. }
 \author{ Seung W. Choi <s-choi@northwestern.edu> }
 \note{ 
   nr must be a large number (e.g., 500) for smooth distributions.

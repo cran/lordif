@@ -30,7 +30,7 @@
   \item{flag}{a logical vector of DIF flags}
 }
 \references{
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (April, 2009). Development of freeware for an iterative hybrid ordinal logistic regression/IRT DIF. Paper Presented at the National Council of Measurement in Education. San Diego, CA. 
+  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. 
   
   Crane, P. K., Gibbons, L. E., Jolley, L., and van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
