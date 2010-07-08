@@ -3,7 +3,7 @@
 %\alias{lordif}
 \docType{package}
 \title{
-Logistic Regression Differential Item Functioning using IRT
+LOgistic Regression Differential Item Functioning using IRT
 }
 \description{
 Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous items  
@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.1-4\cr
-Date: \tab 2009-11-12\cr
+Version: \tab 0.1-5\cr
+Date: \tab 2010-07-08\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -25,17 +25,14 @@ LazyLoad: \tab yes\cr
   This package represents an effort to integrate both statistical and IRT procedures into  
   a single program. A Monte Carlo simulation approach was incorporated to derive empirical threshold 
   values for various DIF statistics and effect size measures.  
-  The three most important functions are: \code{\link{lordif}}, \code{\link{plotDIF}}, and \code{\link{montecarlo}}.
+  The two most important functions are: \code{\link{lordif}} and \code{\link{montecarlo}}.
 }
 \author{
 Seung W. Choi, with contributions from  
   Laura E. Gibbons and Paul K. Crane
-
 Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 }
 \references{
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. 
-  
   Crane, P. K., Gibbons, L. E., Jolley, L., & van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
 \keyword{ package }
@@ -43,14 +40,26 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
   \code{\link[ltm:ltm-package]{ltm}},  \code{\link[Design:Design]{Design}}
 }
 \examples{
-##data(Anxiety)
-##age : 0=younger than 65 and 1=65 or older
-##gender: 0=Male and 1=Female
+##load PROMIS Anxiety sample data (n=766)
+  data(Anxiety)
+##age : 0=younger than 65 or 1=65 or older
+##gender: 0=Male or 1=Female
 ##education: 0=some college or higher 1=high school of lower
-#runs age DIF on all 29 items (takes about a minute)
-\dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)} 
-#generates plots for DIF items, reference="Younger" & focal="Older"
-\dontrun{plotDIF(sample.run,labels=c("Younger","Older"))} 
-\dontrun{montecarlo(age.dif,alpha=0.05,nr=500)} 
-##this may take a few minutes
+##run age-related DIF on all 29 items (takes about a minute)
+  age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age) 
+##print output
+##print(age.dif)
+##print extended output
+##summary(age.dif)
+##generate plots for DIF items (reference group: <65)
+##plot(age.dif,labels=c("Younger","Older")) 
+##run Monte Carlo simulations for threshold values
+##this may take several minutes
+  age.dif.MC<-montecarlo(age.dif,alpha=0.05,nr=100)
+##print output
+##print(age.dif.MC)
+##print extended output
+##summary(age.dif.MC)
+##generate plots for Monte Carlo threshold values
+##plot(age.dif.MC)  
 }

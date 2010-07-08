@@ -20,7 +20,9 @@ pseudo13.McFadden<-numeric(ni)
 pseudo23.McFadden<-numeric(ni)
 flag.post<-logical(ni)
 for (i in 1:ni) {
-output<-runolr(resp[,i],theta,as.factor(gr))
+output<-try(runolr(resp[,i],theta,as.factor(gr)),silent=T)
+if (class(output)=="try-error") output<-runolr(resp[,i],log((theta-min(theta)+0.01)/(max(theta)-theta+.01)),as.factor(gr))
+
 if (exists("output")) {
 beta12[i]<-output$beta12
 chi12[i]<-output$chi12

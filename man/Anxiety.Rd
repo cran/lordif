@@ -52,6 +52,5 @@
 }
 \examples{
 data(Anxiety)
-## maybe str(Anxiety) ; plot(Anxiety) ...
 }
 \keyword{datasets}
