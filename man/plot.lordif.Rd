@@ -1,19 +1,18 @@
-\name{plotDIF}
-\alias{plotDIF}
+\name{plot.lordif}
+\alias{plot.lordif}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ plots DIF graphs for flagged items }
+\title{ Plot method for lordif class }
 \description{
   plots diagnostic graphs for items identified as displaying DIF
 }
 \usage{
-plotDIF(obj, labels = c("Reference", "Focal"), cexp = 0.8, lwd = 1)
+  \method{plot}{lordif}(x, labels = c("Reference", "Focal"), \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{obj}{ output from lordif }
+  \item{x}{ output from lordif }
   \item{labels}{ labels for group levels, e.g., c("Male","Female") }
-  \item{cexp}{ character expansion factor, e.g., cexp=2 for two times a normal size }
-  \item{lwd}{ line width, e.g., lwd=2 for thicker lines for focal groups }
+  \item{...}{ extra graphical parameters }
 }
 \details{
   Generates the following graphs IF there is one or more DIF items:
@@ -28,21 +27,19 @@ plotDIF(obj, labels = c("Reference", "Focal"), cexp = 0.8, lwd = 1)
   Graphs 2-5 are generated for each DIF item
   Graphs 1, 6 and 7 are generated for the whole analysis
 }
-\value{
-  Returns no object.
+\author{
+  Seung W. Choi <s-choi@northwestern.edu>}
+\note{
+  Produces graphs only if x contains DIF items.
 }
-\references{ 
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods.
-}
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
-\note{ 
-  Runs only if obj contains DIF items.
-}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
 \seealso{ \code{\link{lordif}} }
 \examples{
 ##run lordif first
-\dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
-\dontrun{plotDIF(age.dif,labels=c("Younger","Older"))}
+##age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)
+##plot(age.dif,labels=c("Younger","Older"),cex=0.8,lwd=1)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

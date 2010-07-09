@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ performs Monte Carlo simulations for empirical cutoff thresholds }
 \description{
-  Performs Monte Carlo simulations using multiple datasets without DIF.
+  performs Monte Carlo simulations under no-DIF conditions to generate empirical cutoff thresholds 
 }
 \usage{
 montecarlo(obj, alpha = 0.01, nr = 100)
@@ -15,13 +15,13 @@ montecarlo(obj, alpha = 0.01, nr = 100)
   \item{nr}{ number of replications }
 }
 \details{
-  The simulated datasets have the same dimensions as the empirical data.  
-  Group differences (impact) in theta between groups are preserved in simulated datasets.  
+  Simulated datasets are generated under no-DIF conditions and have the same dimensions as the empirical dataset.  
+  Group differences (impact) in theta estimates are preserved in the simulated datasets.  
   Returns empirical thresholds for various statistics and effect size measures.
 }
-
 \value{
-  Returns a data frame with the following components:
+  Returns a list of class "lordif.MC" with the following components:
+  \item{call}{calling expression}
   \item{chi12}{prob associated with the LR Chi-square test comparing Model 1 vs. 2}
   \item{chi13}{prob associated with the LR Chi-square test comparing Model 1 vs. 3}
   \item{chi23}{prob associated with the LR Chi-square test comparing Model 2 vs. 3}
@@ -39,17 +39,25 @@ montecarlo(obj, alpha = 0.01, nr = 100)
   \item{nr}{number of replications}
   \item{cutoff}{thresholds for the statistics}
 }
-\references{ Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
-\note{ 
-  nr must be a large number (e.g., 500) for smooth distributions.
+\references{
+  Crane, P. K., Gibbons, L. E., Jolley, L., and van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
+\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\note{
+  nr must be a large integer (e.g., 500) for smooth distributions.
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
 \seealso{ \code{\link{lordif}} }
 \examples{
-##run lordif first
-\dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
-##the following takes a long time
-\dontrun{mc1 <- montecarlo(age.dif,alpha=0.05,nr=500)}
+##load PROMIS Anxiety sample data (n=766)
+  data(Anxiety)
+##age : 0=younger than 65 or 1=65 or older
+##run age-related DIF on all 29 items (takes about a minute)
+  age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age) 
+##the following takes several minutes
+  age.DIF.MC <- montecarlo(age.dif,alpha=0.01,nr=100)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

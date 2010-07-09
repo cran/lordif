@@ -1,10 +1,12 @@
 # Exported functions
-export(lordif, montecarlo, plotDIF, plotMC,
-       calcprob, calctheta, collapse, equate,    
+export(lordif, montecarlo, calcprob, calctheta, collapse, equate,    
        extract, getcutoff, probgrm, recode, rundif, runolr,    
-       separate, tcc )
-
+       separate, tcc, plot.lordif, plot.lordif.MC )
+S3method(print, lordif)
+S3method(print, lordif.MC)
+S3method(summary, lordif)
+S3method(summary, lordif.MC)
+s3method(plot, plot.lordif)
+s3method(plot, plot.lordif.MC)
 # Imported functions
 importFrom("ltm", grm)
-
-

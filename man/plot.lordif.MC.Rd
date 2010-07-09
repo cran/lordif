@@ -1,18 +1,20 @@
-\name{plotMC}
-\alias{plotMC}
+\name{plot.lordif.MC}
+\alias{plot.lordif.MC}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ plots Monte Carlo output }
+\title{
+  Plot method for Monte Carlo simulation output
+}
 \description{
-  generate plots for Monte Carlo output
+  Produces plots for Monte Carlo output
 }
 \usage{
-plotMC(obj, mfrow = c(3, 1), cexp = 1.0)
+  \method{plot}{lordif.MC}(x, mfrow = c(3, 1), \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{obj}{ output object from lordif }
+  \item{x}{ an object of class lordif.MC returned from montecarlo }
   \item{mfrow}{ number of rows and columns per page for multi-fane plots }
-  \item{cexp}{ character expansion factor, e.g., cexp=2 for two times a normal size }
+  \item{...}{ extra graphical parameters }
 }
 \details{
   Generates the following graphs:
@@ -27,19 +29,20 @@ plotMC(obj, mfrow = c(3, 1), cexp = 1.0)
 \value{
   Returns no object.
 }
-\references{ 
-  Choi, S. W., Gibbons, L. E., & Crane, P. K. (under review). Development of an iterative hybrid ordinal logistic regression/IRT DIF: A Monte Carlo simulation approach for determining cutoff values. Behavior Research Methods. }
 \author{ Seung W. Choi <s-choi@northwestern.edu> }
-\note{ 
-  obj is an object output from montecarlo
+\note{
+  x is an object of class lordif.MC returned from montecarlo
 }
-\seealso{ \code{\link{lordif}} }
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{\code{\link{lordif}} 
+}
 \examples{
-##run lordif first
-\dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
-\dontrun{plotDIF(age.dif,labels=c("Younger","Older"))}
-\dontrun{age.dif.MC <- montecarlo(age.dif,alpha=.05,nr=500)}
-\dontrun{plotMC(age.dif.MC,mfrow=c(1,1))}
+  ## s3 plot method for class 'lordif.MC':
+  ## age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)
+  ## age.dif.MC <- montecarlo(age.dif,alpha=.05,nr=500)
+  ## plot(age.dif.MC,mfrow=c(1,1))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
