@@ -8,7 +8,11 @@
   performs iterative hybrid ordinal logistic regression/IRT DIF
 }
 \usage{
-lordif(resp.data, group, selection = NULL, criterion = c("Chisqr", "R2", "Beta"), pseudo.R2 = c("McFadden", "Nagelkerke", "CoxSnell"), alpha = 0.01, beta.change = 0.1, R2.change = 0.02, maxIter = 10, minCell = 5, minTheta = -4, maxTheta = 4, inc = 0.1)
+  lordif(resp.data, group, selection = NULL,
+  criterion = c("Chisqr", "R2", "Beta"),
+  pseudo.R2 = c("McFadden", "Nagelkerke", "CoxSnell"), alpha = 0.01,
+  beta.change = 0.1, R2.change = 0.02, maxIter = 10, minCell = 5,
+  minTheta = -4, maxTheta = 4, inc = 0.1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
