@@ -1,6 +1,6 @@
 lordif <-
 function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo.R2=c("McFadden","Nagelkerke","CoxSnell"),alpha=0.01,beta.change=0.1,R2.change=0.02,
-              maxIter=10,minCell=5,minTheta=-4.0,maxTheta=4.0,inc=0.1) {
+              maxIter=10,minCell=5,minTheta=-4.0,maxTheta=4.0,inc=0.1,NQ=41) {
 call<-match.call()
 criterion<-match.arg(criterion)
 pseudo.R2<-match.arg(pseudo.R2)
@@ -35,7 +35,8 @@ resp.recoded[,i]<-collapse(resp.data[,selection[i]],group,minCell)
 }
 ncat<-as.numeric(apply(resp.recoded,2,max,na.rm=T))
 ng<-length(table(group))
-calib<-grm(resp.recoded,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100,GHk=81))
+
+calib<-grm(resp.recoded,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100,GHk=NQ)) #GHk was set to 21 to prevent non-convergent in optim/grm
 ipar<-extract(calib)
 theta.grid<-seq(minTheta,maxTheta,inc)
 theta<-calctheta(ipar,resp.recoded,theta.grid)
@@ -58,7 +59,7 @@ repeat {
 iter<-iter+1
 flag.matrix<-rbind(flag.matrix,flags)
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50,GHk=NQ)) 
 ipar.sparse<-extract(calib.sparse) 
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -76,7 +77,7 @@ break
 if (compare(flags,flag.matrix) | iter == maxIter) {
 if (!all(pre.flags==flags)) {
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50,GHk=NQ)) 
 ipar.sparse<-extract(calib.sparse) 
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -88,7 +89,7 @@ break
 }
 if (!compare(flags,flag.matrix) & (iter == maxIter)) {
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50,GHk=NQ)) 
 ipar.sparse<-extract(calib.sparse)
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
