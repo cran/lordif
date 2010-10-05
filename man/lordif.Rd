@@ -12,7 +12,7 @@
   criterion = c("Chisqr", "R2", "Beta"),
   pseudo.R2 = c("McFadden", "Nagelkerke", "CoxSnell"), alpha = 0.01,
   beta.change = 0.1, R2.change = 0.02, maxIter = 10, minCell = 5,
-  minTheta = -4, maxTheta = 4, inc = 0.1)
+  minTheta = -4, maxTheta = 4, inc = 0.1, NQ=41)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -29,6 +29,7 @@
   \item{minTheta}{ minimum for theta grid }
   \item{maxTheta}{ maximum for theta grid }
   \item{inc}{ increment for theta grid }
+  \item{NQ}{ number of quadrature points for IRT parameter estimation }
 }
 \details{
   Performs a ordinal (common odds-ratio) logistic regression DIF analysis using IRT theta estimates  
