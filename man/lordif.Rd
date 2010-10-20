@@ -29,7 +29,7 @@
   \item{minTheta}{ minimum for theta grid }
   \item{maxTheta}{ maximum for theta grid }
   \item{inc}{ increment for theta grid }
-  \item{NQ}{ number of quadrature points for IRT parameter estimation }
+  \item{NQ}{ number of quadrature points for IRT parameter estimation (maximum of 61) }
 }
 \details{
   Performs a ordinal (common odds-ratio) logistic regression DIF analysis using IRT theta estimates  

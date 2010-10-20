@@ -13,12 +13,15 @@ if (maxIter<1) {warning("maxIter must be >= 1, will be reset to default");maxIte
 if (minCell<1) {warning("minCell must be >= 1, will be reset to 5");minCell<-5}
 if (minTheta>=maxTheta) {warning("minTheta must be < maxTheta, will be reset to default");minTheta<--4;maxTheta<-4}
 if (inc<=0) {warning("inc must be > 0, will be reset to default");inc<-.1}
-resp.data<-resp.data[!is.na(group),]
-group<-group[!is.na(group)]
-nobs<-nrow(resp.data)
-if (length(selection)==0) selection<-1:ncol(resp.data) 
+if (NQ>61) NQ<-61
+if(nrow(resp.data) != length(group)) stop ("nobs in resp.data and group vector are not congruent")
+if (length(selection)==0) selection<-1:ncol(resp.data)
 tni<-ncol(resp.data)
 ni<-length(selection)
+bad<-is.na(group) | rowSums(!is.na(resp.data[,selection]))==0
+resp.data<-resp.data[!bad,]
+group<-group[!bad]
+nobs<-nrow(resp.data)
 if (nobs != length(group)) stop ("nobs in response matrix and group vector are not congruent") 
 if (ni<5) stop("number of items must be at least 5") 
 if (prod(is.element(selection,1:tni))!=1) stop("selection is not in the total set") 
@@ -35,8 +38,7 @@ resp.recoded[,i]<-collapse(resp.data[,selection[i]],group,minCell)
 }
 ncat<-as.numeric(apply(resp.recoded,2,max,na.rm=T))
 ng<-length(table(group))
-
-calib<-grm(resp.recoded,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100,GHk=NQ)) #GHk was set to 21 to prevent non-convergent in optim/grm
+calib<-grm(resp.recoded,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100,GHk=NQ))
 ipar<-extract(calib)
 theta.grid<-seq(minTheta,maxTheta,inc)
 theta<-calctheta(ipar,resp.recoded,theta.grid)
@@ -59,7 +61,7 @@ repeat {
 iter<-iter+1
 flag.matrix<-rbind(flag.matrix,flags)
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50,GHk=NQ)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100)) 
 ipar.sparse<-extract(calib.sparse) 
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -77,7 +79,7 @@ break
 if (compare(flags,flag.matrix) | iter == maxIter) {
 if (!all(pre.flags==flags)) {
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50,GHk=NQ)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100)) 
 ipar.sparse<-extract(calib.sparse) 
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -89,7 +91,7 @@ break
 }
 if (!compare(flags,flag.matrix) & (iter == maxIter)) {
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=50,GHk=NQ)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100)) 
 ipar.sparse<-extract(calib.sparse)
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
