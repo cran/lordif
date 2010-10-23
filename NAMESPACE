@@ -1,4 +1,4 @@
-# Exported functions
+# Exported functions 
 export(lordif, montecarlo, calcprob, calctheta, collapse, equate,    
        extract, getcutoff, probgrm, recode, rundif, runolr,    
        separate, tcc, plot.lordif, plot.lordif.MC )

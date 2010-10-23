@@ -11,6 +11,7 @@ for (j in 1:(ncat[i]-1)) {
 out.ipar[i,j+1]<-ipar$coefficients[[i]][j]/out.ipar[i,1]
 }
 }
+if (all(out.ipar[,1]<0)) out.ipar<- -out.ipar
 return(out.ipar)
 }
 

@@ -55,9 +55,9 @@ montecarlo(obj, alpha = 0.01, nr = 100)
   data(Anxiety)
 ##age : 0=younger than 65 or 1=65 or older
 ##run age-related DIF on all 29 items (takes about a minute)
-  age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age) 
+  age.DIF <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age) 
 ##the following takes several minutes
-  age.DIF.MC <- montecarlo(age.dif,alpha=0.01,nr=100)
+  age.DIF.MC <- montecarlo(age.DIF,alpha=0.01,nr=100)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

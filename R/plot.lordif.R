@@ -7,7 +7,7 @@ return(ws)
 ndif<-sum(x$flag)
 maxcat<-ncol(x$ipar.sparse)
 if(ndif<1) stop("no DIF items present")
-windows(record=T)
+windows(width = 7, height = 7,record=T)
 theta<-seq(x$options$minTheta,x$options$maxTheta,x$options$inc)
 difitems<-(1:x$ni)[x$flag]
 itemnames<-row.names(x$ipar.sparse)
@@ -86,6 +86,6 @@ abline(h=mean(x$calib$theta-x$calib.sparse$theta),lty=2)
 for (i in 1:x$ng) {
 points(x$calib$theta[x$group==as.numeric(names(table(x$group))[i])],difference[x$group==as.numeric(names(table(x$group))[i])],col=i,pch=i)
 }
-legend("bottomright",labels,pch=1:x$ng,col=1:x$ng,bg="white")
+legend("topright",labels,pch=1:x$ng,col=1:x$ng,bg="white")
 }
 
