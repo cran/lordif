@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.1-8\cr
-Date: \tab 2010-10-20\cr
+Version: \tab 0.1-9\cr
+Date: \tab 2010-11-29\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }

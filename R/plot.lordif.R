@@ -7,7 +7,7 @@ return(ws)
 ndif<-sum(x$flag)
 maxcat<-ncol(x$ipar.sparse)
 if(ndif<1) stop("no DIF items present")
-windows(width = 7, height = 7,record=T)
+dev.new(record=T)
 theta<-seq(x$options$minTheta,x$options$maxTheta,x$options$inc)
 difitems<-(1:x$ni)[x$flag]
 itemnames<-row.names(x$ipar.sparse)
