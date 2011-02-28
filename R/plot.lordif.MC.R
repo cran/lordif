@@ -3,7 +3,7 @@ function(x,mfrow=c(3,1),...) {
 if (class(x)!="lordif.MC") stop(paste(deparse(substitute(x)),"must be of class lordif.MC"))
 nr<-x$nr
 Item<-1:dim(x$cutoff)[1]
-dev.new(record=T)
+if (Sys.info()["sysname"]=="Windows") dev.new(record=T) else par(ask=T)
 par(mfrow=mfrow)
 par(mar=c(2,5,1,2)+0.1)
 max.chi<-max(pretty(c(x$cutoff$chi12,x$cutoff$chi13,x$cutoff$chi23)))

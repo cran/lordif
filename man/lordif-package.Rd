@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.1-9\cr
-Date: \tab 2010-11-29\cr
+Version: \tab 0.1-10\cr
+Date: \tab 2011-2-28\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -33,6 +33,8 @@ Seung W. Choi, with contributions from
 Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 }
 \references{
+  Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
+  
   Crane, P. K., Gibbons, L. E., Jolley, L., & van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
 \keyword{ package }
