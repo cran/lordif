@@ -1,8 +1,8 @@
 Package: lordif
 Type: Package
 Title: Logistic Regression Differential Item Functioning using IRT
-Version: 0.1-9
-Date: 2010-11-29
+Version: 0.1-10
+Date: 2011-2-28
 Author: Seung W. Choi, with contributions from Laura E. Gibbons and
         Paul K. Crane
 Maintainer: Seung W. Choi <s-choi@northwestern.edu>
@@ -13,6 +13,6 @@ Depends: R (>= 2.7.0), MASS, msm, mvtnorm, polycor, sfsmisc, ltm,
         Hmisc, Design
 License: GPL (>= 2)
 LazyLoad: yes
-Packaged: 2010-11-29 21:04:31 UTC; Seung Choi
+Packaged: 2011-03-01 04:56:25 UTC; Seung Choi
 Repository: CRAN
-Date/Publication: 2010-11-30 08:04:25
+Date/Publication: 2011-03-01 09:53:18
