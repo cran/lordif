@@ -1,4 +1,4 @@
-montecarlo <-
+permute <-
 function(obj,alpha=0.01,nr=100) {
 call<-match.call()
 if (class(obj)!="lordif") stop(paste(deparse(substitute(obj)),"must be of class lordif"))
@@ -9,12 +9,11 @@ options<-obj$options
 ipar<-obj$ipar
 group<-obj$group
 ncat<-obj$ncat
-if (sum(obj$flag)>0) theta<-obj$calib.sparse$theta
-else theta<-obj$calib$theta
+resp<-obj$recoded
+theta<-obj$calib$theta
 selection<-obj$selection
 nobs<-length(theta)
 ni<-nrow(ipar)
-pp<-calcprob(ipar,theta)
 chi12<-matrix(NA,nr,ni);rownames(chi12)<-paste("Rep",1:nr,sep="");colnames(chi12)<-paste("I",selection,sep="")
 chi13<-matrix(NA,nr,ni);rownames(chi13)<-paste("Rep",1:nr,sep="");colnames(chi13)<-paste("I",selection,sep="")
 chi23<-matrix(NA,nr,ni);rownames(chi23)<-paste("Rep",1:nr,sep="");colnames(chi23)<-paste("I",1:ni,sep="")
@@ -30,15 +29,8 @@ pseudo23.McFadden<-matrix(NA,nr,ni);rownames(pseudo23.McFadden)<-paste("Rep",1:n
 beta12<-matrix(NA,nr,ni);rownames(beta12)<-paste("Rep",1:nr,sep="");colnames(beta12)<-paste("I",selection,sep="")
 cat(paste("Start time:",date(),"\n\n"))
 for (r in 1:nr) {
-random<-matrix(runif(nobs*ni),nobs,ni)
-resp<-data.frame(matrix(NA,nobs,ni))
-for (i in 1:ni) {
-ppi<-pp[,i,]
-cumpp<-t(apply(ppi,1,cumsum))
-resp[,i]<-rowSums(cumpp<random[,i],na.rm=T)+1
-}
-etheta<-calctheta(ipar,resp,seq(options$minTheta,options$maxTheta,options$inc))$theta
-out<-rundif(1:ni,resp,etheta,group,options$criterion,options$alpha,options$beta.change,options$pseudo.R2,options$R2.change)
+group.random<-group[sample(nobs)]
+out<-rundif(1:ni,resp,theta,group.random,options$criterion,options$alpha,options$beta.change,options$pseudo.R2,options$R2.change)
 chi12[r,]<-out$stats$chi12
 chi13[r,]<-out$stats$chi13
 chi23[r,]<-out$stats$chi23
@@ -82,4 +74,3 @@ beta12=beta12,alpha=alpha,nr=nr,cutoff=data.frame(cutoff))
 class(out)<-"lordif.MC"
 return(out)
 }
-

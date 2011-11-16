@@ -40,9 +40,9 @@
 }
 \examples{
   ## s3 plot method for class 'lordif.MC':
-  ## age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)
-  ## age.dif.MC <- montecarlo(age.dif,alpha=.05,nr=500)
-  ## plot(age.dif.MC,mfrow=c(1,1))
+  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
+  \dontrun{age.dif.MC <- montecarlo(age.dif,alpha=.05,nr=500)}
+  \dontrun{plot(age.dif.MC,mfrow=c(1,1))}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

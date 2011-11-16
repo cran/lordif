@@ -38,8 +38,8 @@
 \seealso{ \code{\link{lordif}} }
 \examples{
 ##run lordif first
-##age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)
-##plot(age.dif,labels=c("Younger","Older"),cex=0.8,lwd=1)
+  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
+  \dontrun{plot(age.dif,labels=c("Younger","Older"),cex=0.8,lwd=1)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

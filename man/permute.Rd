@@ -1,12 +1,12 @@
-\name{montecarlo}
-\alias{montecarlo}
+\name{permute}
+\alias{permute}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ performs Monte Carlo simulations for empirical cutoff thresholds }
+\title{ performs permutation test for empirical cutoff thresholds }
 \description{
-  performs Monte Carlo simulations under no-DIF conditions to generate empirical cutoff thresholds 
+  performs permutation tests under no-DIF conditions to generate empirical cutoff thresholds 
 }
 \usage{
-montecarlo(obj, alpha = 0.01, nr = 100)
+permute(obj, alpha = 0.01, nr = 100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -15,8 +15,8 @@ montecarlo(obj, alpha = 0.01, nr = 100)
   \item{nr}{ number of replications }
 }
 \details{
-  Simulated datasets are generated under no-DIF conditions and have the same dimensions as the empirical dataset.  
-  Group differences (impact) in theta estimates are preserved in the simulated datasets.  
+  The vector of group designations is randomly shuffled nr times to estimate the sampling distribution
+  of the statistics when the null hypothesis is true.
   Returns empirical thresholds for various statistics and effect size measures.
 }
 \value{
@@ -57,7 +57,8 @@ montecarlo(obj, alpha = 0.01, nr = 100)
 ##run age-related DIF on all 29 items (takes about a minute)
   \dontrun{age.DIF <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
 ##the following takes several minutes
-  \dontrun{age.DIF.MC <- montecarlo(age.DIF,alpha=0.01,nr=100)}
+  \dontrun{age.DIF.MC <- permute(age.DIF,alpha=0.01,nr=100)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+

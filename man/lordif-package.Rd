@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.1-10\cr
-Date: \tab 2011-2-28\cr
+Version: \tab 0.2-1\cr
+Date: \tab 2011-11-16\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -39,29 +39,29 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 }
 \keyword{ package }
 \seealso{
-  \code{\link[ltm:ltm-package]{ltm}},  \code{\link[Design:Design]{Design}}
+  \code{\link[ltm:ltm-package]{ltm}},  \code{\link[rms:rms]{rms}}
 }
 \examples{
 ##load PROMIS Anxiety sample data (n=766)
-  data(Anxiety)
+  \dontrun{data(Anxiety)}
 ##age : 0=younger than 65 or 1=65 or older
 ##gender: 0=Male or 1=Female
-##education: 0=some college or higher 1=high school of lower
+##education: 0=some college or higher 1=high school or lower
 ##run age-related DIF on all 29 items (takes about a minute)
-  age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age) 
+  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
 ##print output
-##print(age.dif)
+  \dontrun{print(age.dif)}
 ##print extended output
-##summary(age.dif)
+  \dontrun{summary(age.dif)}
 ##generate plots for DIF items (reference group: <65)
-##plot(age.dif,labels=c("Younger","Older")) 
+  \dontrun{plot(age.dif,labels=c("Younger","Older"))}
 ##run Monte Carlo simulations for threshold values
 ##this may take several minutes
-  age.dif.MC<-montecarlo(age.dif,alpha=0.05,nr=100)
+  \dontrun{age.dif.MC<-montecarlo(age.dif,alpha=0.05,nr=100)}
 ##print output
-##print(age.dif.MC)
+  \dontrun{print(age.dif.MC)}
 ##print extended output
-##summary(age.dif.MC)
+  \dontrun{summary(age.dif.MC)}
 ##generate plots for Monte Carlo threshold values
-##plot(age.dif.MC)  
+  \dontrun{plot(age.dif.MC)}
 }
