@@ -1,7 +1,7 @@
 # Exported functions 
 export(lordif, montecarlo, calcprob, calctheta, collapse, equate,    
        extract, getcutoff, probgrm, recode, rundif, runolr,    
-       separate, tcc, plot.lordif, plot.lordif.MC )
+       separate, tcc, plot.lordif, plot.lordif.MC, permute )
 S3method(print, lordif)
 S3method(print, lordif.MC)
 S3method(summary, lordif)

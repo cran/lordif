@@ -51,6 +51,6 @@
   PROMIS Cooperative Group. Unpublished Manual for the Patient-Reported Outcomes Measurement Information System (PROMIS) Version 1.1. October, 2008: \url{http://www.nihpromis.org}
 }
 \examples{
-data(Anxiety)
+  \dontrun{data(Anxiety)}
 }
 \keyword{datasets}

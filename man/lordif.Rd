@@ -66,18 +66,18 @@
   Seung W. Choi <s-choi@northwestern.edu>
 }
 \note{
-  requires the \pkg{ltm} and \pkg{Design} packages
+  requires the \pkg{ltm} and \pkg{rms} packages
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{ \code{\link{rundif}} }
 \examples{
-  data(Anxiety)
-  resp.data <- Anxiety[paste("R",1:29,sep="")] 
-  age <- Anxiety$age 
-  age.DIF <- lordif(resp.data,age)
-  #print(age.DIF)
+  \dontrun{data(Anxiety)}
+  \dontrun{resp.data <- Anxiety[paste("R",1:29,sep="")]}
+  \dontrun{age <- Anxiety$age}
+  \dontrun{age.DIF <- lordif(resp.data,age)}
+  \dontrun{print(age.DIF)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
