@@ -62,4 +62,3 @@ pseudo12.CoxSnell,pseudo13.CoxSnell,pseudo23.CoxSnell,df12,df13,df23)
 row.names(stats)<-NULL
 return(list(stats=stats,flag=flag.post))
 }
-

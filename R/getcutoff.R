@@ -12,4 +12,3 @@ if (reverse) out<-rev(sort(stat))[cutpos]
 else out<-sort(stat)[cutpos]
 return(out)
 }
-

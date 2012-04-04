@@ -11,4 +11,3 @@ pp[,i,1:(NCAT[i])]<-probgrm(theta,DISC[i],CB[i,])
 }
 return(pp)
 }
-

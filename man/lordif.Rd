@@ -12,7 +12,7 @@
   criterion = c("Chisqr", "R2", "Beta"),
   pseudo.R2 = c("McFadden", "Nagelkerke", "CoxSnell"), alpha = 0.01,
   beta.change = 0.1, R2.change = 0.02, maxIter = 10, minCell = 5,
-  minTheta = -4, maxTheta = 4, inc = 0.1, NQ=41)
+  minTheta = -4, maxTheta = 4, inc = 0.1, control = list())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -29,7 +29,7 @@
   \item{minTheta}{ minimum for theta grid }
   \item{maxTheta}{ maximum for theta grid }
   \item{inc}{ increment for theta grid }
-  \item{NQ}{ number of quadrature points for IRT parameter estimation (maximum of 61) }
+  \item{control}{ a list of control variables (refer to the grm function in the \pkg{ltm} package) }
 }
 \details{
   Performs a ordinal (common odds-ratio) logistic regression DIF analysis using IRT theta estimates  
@@ -76,7 +76,7 @@
   \dontrun{data(Anxiety)}
   \dontrun{resp.data <- Anxiety[paste("R",1:29,sep="")]}
   \dontrun{age <- Anxiety$age}
-  \dontrun{age.DIF <- lordif(resp.data,age)}
+  \dontrun{age.DIF <- lordif(resp.data,age,control=list(iter.qN=100,GHk=61,method="SANN"))}
   \dontrun{print(age.DIF)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

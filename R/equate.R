@@ -11,4 +11,3 @@ return(sum(tcc(a.to,cb.to,theta)-tcc(a.from,cb.from,theta))^2)
 }
 return (nlminb(c(1.0,0.0),SL,lower=c(0.5,-2.0),upper=c(2.0,2.0))$par)
 }
-

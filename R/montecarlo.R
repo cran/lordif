@@ -82,4 +82,3 @@ beta12=beta12,alpha=alpha,nr=nr,cutoff=data.frame(cutoff))
 class(out)<-"lordif.MC"
 return(out)
 }
-

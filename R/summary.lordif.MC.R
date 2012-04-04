@@ -34,4 +34,3 @@ cat("\nselected quantiles - proportionate Beta change (Model 1 vs. Model 2):\n\n
 print(apply(object$beta12,2,qquantile))
 invisible(object)
 }
-

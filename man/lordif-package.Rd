@@ -13,8 +13,8 @@ Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous i
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.2-1\cr
-Date: \tab 2011-11-16\cr
+Version: \tab 0.2-2\cr
+Date: \tab 2012-4-4\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -48,7 +48,8 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 ##gender: 0=Male or 1=Female
 ##education: 0=some college or higher 1=high school or lower
 ##run age-related DIF on all 29 items (takes about a minute)
-  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
+  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],}
+  \dontrun{ Anxiety$age, control=list(iter.qN=100,GHk=61,method="SANN"))}
 ##print output
   \dontrun{print(age.dif)}
 ##print extended output

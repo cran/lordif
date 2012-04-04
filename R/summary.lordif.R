@@ -7,4 +7,3 @@ print(object$options[c("criterion","alpha","pseudo.R2","R2.change","beta.change"
 print(object[c("stats","flag","flag.raw")])
 invisible(object)
 }
-

@@ -15,4 +15,3 @@ EAP<-posterior%*%theta/rowSums(posterior)
 SEM<-sqrt(rowSums(posterior*(matrix(theta,nExaminees,nq,byrow=T)-matrix(EAP,nExaminees,nq))^2)/rowSums(posterior))
 return(list(theta=as.vector(EAP),SE=SEM))
 }
-
