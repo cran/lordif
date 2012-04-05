@@ -27,4 +27,3 @@ points(Item,x$cutoff$pseudo23.CoxSnell,type="b",col="red",lty=3,pch=3)
 max.beta<-max(pretty(x$cutoff$beta12))
 plot(Item,x$cutoff$beta12,ylab=substitute(Delta(beta[1])),type="b",ylim=c(0,max.beta),...)
 }
-

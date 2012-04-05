@@ -8,4 +8,3 @@ rvec[vec==original[k]]<-modified[k]
 }
 return(rvec)
 }
-

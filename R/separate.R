@@ -18,4 +18,3 @@ sparse.resp[gr==gr.label[j],ng*i-ng+j]<-resp.dif[gr==gr.label[j],i]
 out<-data.frame(resp.nodif,sparse.resp)
 return(out)
 }
-

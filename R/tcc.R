@@ -7,4 +7,3 @@ T<-T+probgrm(theta,a[i],cb[i,])%*%seq(0,sum(!is.na(cb[i,])));
 }
 return(T)
 }
-

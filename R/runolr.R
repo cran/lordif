@@ -41,4 +41,3 @@ pseudo12.Nagelkerke=pseudo12.Nagelkerke,pseudo13.Nagelkerke=pseudo13.Nagelkerke,
 pseudo12.McFadden=pseudo12.McFadden,pseudo13.McFadden=pseudo13.McFadden,pseudo23.McFadden=pseudo23.McFadden,
 df12=df12,df13=df13,df23=df23))
 }
-

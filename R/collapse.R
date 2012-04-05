@@ -12,4 +12,3 @@ if (modified[1]==0) modified<-modified+1
 if (max(modified)<2) stop(paste("items must have at least two valid response categories with",minCell,"or more cases."))
 return (recode(resp,original,modified))
 }
-

@@ -1,6 +1,6 @@
 lordif <-
 function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo.R2=c("McFadden","Nagelkerke","CoxSnell"),alpha=0.01,beta.change=0.1,R2.change=0.02,
-              maxIter=10,minCell=5,minTheta=-4.0,maxTheta=4.0,inc=0.1,NQ=41) {
+              maxIter=10,minCell=5,minTheta=-4.0,maxTheta=4.0,inc=0.1,control=list()) {
 call<-match.call()
 criterion<-match.arg(criterion)
 pseudo.R2<-match.arg(pseudo.R2)
@@ -8,12 +8,11 @@ if (!(criterion %in% c("Chisqr","R2","Beta"))){warning("criterion must be one of
 if (!(pseudo.R2 %in% c("McFadden","Nagerlkerke","CoxSnell"))) {warning("pseudo.R2 must be one of the following \"McFadden\", \"Nagelkerke\", or \"CoxSnell\", will be reset to default");pseudo.R2<-"McFadden"}
 if (alpha<=0 & alpha>1) {warning ("alpha must be > 0 & < 1, will be reset to default");alpha<-.01}
 if (beta.change<=0 & beta.change>=1) {warning ("beta.change must be > 0 & < 1, will be reset to default");beta.change<-.1};
-if (R2.change<=0 & R2.change>=1) {warning("R2.change must be > 0 & < 1, will be reset to default");R2.change<-.035}
+if (R2.change<=0 & R2.change>=1) {warning("R2.change must be > 0 & < 1, will be reset to default");R2.change<-.02}
 if (maxIter<1) {warning("maxIter must be >= 1, will be reset to default");maxIter<5}
 if (minCell<1) {warning("minCell must be >= 1, will be reset to 5");minCell<-5}
 if (minTheta>=maxTheta) {warning("minTheta must be < maxTheta, will be reset to default");minTheta<--4;maxTheta<-4}
 if (inc<=0) {warning("inc must be > 0, will be reset to default");inc<-.1}
-if (NQ>61) NQ<-61
 if(nrow(resp.data) != length(group)) stop ("nobs in resp.data and group vector are not congruent")
 if (length(selection)==0) selection<-1:ncol(resp.data)
 tni<-ncol(resp.data)
@@ -38,7 +37,7 @@ resp.recoded[,i]<-collapse(resp.data[,selection[i]],group,minCell)
 }
 ncat<-as.numeric(apply(resp.recoded,2,max,na.rm=T))
 ng<-length(table(group))
-calib<-grm(resp.recoded,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100,GHk=NQ))
+calib<-grm(resp.recoded,constrained=FALSE,IRT.param=TRUE,control=control)
 ipar<-extract(calib)
 theta.grid<-seq(minTheta,maxTheta,inc)
 theta<-calctheta(ipar,resp.recoded,theta.grid)
@@ -61,7 +60,7 @@ repeat {
 iter<-iter+1
 flag.matrix<-rbind(flag.matrix,flags)
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=control) 
 ipar.sparse<-extract(calib.sparse) 
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -79,7 +78,7 @@ break
 if (compare(flags,flag.matrix) | iter == maxIter) {
 if (!all(pre.flags==flags)) {
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=control) 
 ipar.sparse<-extract(calib.sparse) 
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -91,7 +90,7 @@ break
 }
 if (!compare(flags,flag.matrix) & (iter == maxIter)) {
 sparse.matrix<-separate(resp.recoded,flags,group)
-calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=list(iter.qN=100)) 
+calib.sparse<-grm(sparse.matrix,constrained=FALSE,IRT.param=TRUE,control=control) 
 ipar.sparse<-extract(calib.sparse)
 eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid)
 ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -107,4 +106,3 @@ out<-list(call=call,options=list(criterion=criterion,pseudo.R2=pseudo.R2,alpha=a
 class(out)<-"lordif"
 return(out)
 }
-

@@ -8,4 +8,3 @@ cat("  Monte Carlo threshold values:\n\n")
 print(x$cutoff)
 invisible(x)
 }
-

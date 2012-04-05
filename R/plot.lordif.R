@@ -88,4 +88,3 @@ points(x$calib$theta[x$group==as.numeric(names(table(x$group))[i])],difference[x
 }
 legend("topright",labels,pch=1:x$ng,col=1:x$ng,bg="white")
 }
-

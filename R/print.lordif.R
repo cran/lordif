@@ -26,4 +26,3 @@ print(x$stats[c("item","ncat",out)])
 }
 invisible(x)
 }
-

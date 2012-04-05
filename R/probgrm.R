@@ -22,4 +22,3 @@ pp[,k]=ps[,k]-ps[,k+1]
 }
 return(pp)
 }
-
