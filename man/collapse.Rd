@@ -3,11 +3,11 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ collapses response categories }
 \description{
-  collapses response categories if cell frequencies are less than the specified
-  minimum threshold (i.e., minCell) and returns a vector of recoded values.
+  Collapses response categories if cell frequencies by group are below a minimum
+  threshold specified by minCell and returns a vector of recoded responses.
 }
 \usage{
-collapse(resp, group, minCell)
+  collapse(resp, group, minCell)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,9 +22,9 @@ collapse(resp, group, minCell)
 \value{
   a numeric vector of the same length as resp with collapsed/recoded values.
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
 \note{ 
-  Item responses are expected to start from 1 not 0 (e.g., 1, 2, 3, 4, 5 and not 0, 1, 2, 3, 4).
+  The lowest item response category/score should be coded as 1 not 0 (e.g., 1, 2, 3, 4, 5; and not 0, 1, 2, 3, 4).
   There must be at least two unique categories after collapsing/recoding.
 }
 \seealso{ \code{\link{recode}} }

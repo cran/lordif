@@ -8,12 +8,14 @@
   Produces plots for Monte Carlo output
 }
 \usage{
-  \method{plot}{lordif.MC}(x, mfrow = c(3, 1), \dots)
+  \method{plot}{lordif.MC}(x, mfrow = c(3, 1), width = 7, height = 7, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ an object of class lordif.MC returned from montecarlo }
+  \item{x}{ an object of class lordif.MC returned from \code{\link{montecarlo}} }
   \item{mfrow}{ number of rows and columns per page for multi-fane plots }
+  \item{width}{ width of the canvas of the plotting device in inches }
+  \item{height}{ height of the canvas of the plotting device in inches }
   \item{...}{ extra graphical parameters }
 }
 \details{
@@ -29,20 +31,19 @@
 \value{
   Returns no object.
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
 \note{
-  x is an object of class lordif.MC returned from montecarlo
+  x is an object of class lordif.MC returned from \code{\link{montecarlo}}
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link{lordif}} 
-}
+\seealso{\code{\link{lordif}}, \code{\link{montecarlo}}, \code{\link{permute}}} 
 \examples{
   ## s3 plot method for class 'lordif.MC':
   \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
   \dontrun{age.dif.MC <- montecarlo(age.dif,alpha=.05,nr=500)}
-  \dontrun{plot(age.dif.MC,mfrow=c(1,1))}
+  \dontrun{plot(age.dif.MC,mfrow=c(1,1),width=8,height=7)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

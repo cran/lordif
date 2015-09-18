@@ -3,18 +3,18 @@
 %\alias{lordif}
 \docType{package}
 \title{
-LOgistic Regression Differential Item Functioning using IRT
+Logistic Ordinal Regression Differential Item Functioning using IRT
 }
 \description{
-Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous items  
+  Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous items,  
   using an iterative hybrid of (ordinal) logistic regression and item response theory (IRT).
 }
 \details{
 \tabular{ll}{
 Package: \tab lordif\cr
 Type: \tab Package\cr
-Version: \tab 0.2-2\cr
-Date: \tab 2012-4-4\cr
+Version: \tab 0.3-2\cr
+Date: \tab 2015-9-17\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -25,12 +25,12 @@ LazyLoad: \tab yes\cr
   This package represents an effort to integrate both statistical and IRT procedures into  
   a single program. A Monte Carlo simulation approach was incorporated to derive empirical threshold 
   values for various DIF statistics and effect size measures.  
-  The two most important functions are: \code{\link{lordif}} and \code{\link{montecarlo}}.
+  The three most important functions are: \code{\link{lordif}}, \code{\link{DFIT}}, and \code{\link{montecarlo}}.
 }
 \author{
 Seung W. Choi, with contributions from  
   Laura E. Gibbons and Paul K. Crane
-Maintainer: Seung W. Choi <s-choi@northwestern.edu>
+Maintainer: Seung W. Choi <choi.phd@gmail.com>
 }
 \references{
   Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
@@ -39,7 +39,7 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 }
 \keyword{ package }
 \seealso{
-  \code{\link[ltm:ltm-package]{ltm}},  \code{\link[rms:rms]{rms}}
+  \code{\link[mirt:mirt]{mirt}},  \code{\link[rms:rms]{rms}}
 }
 \examples{
 ##load PROMIS Anxiety sample data (n=766)
@@ -48,8 +48,7 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
 ##gender: 0=Male or 1=Female
 ##education: 0=some college or higher 1=high school or lower
 ##run age-related DIF on all 29 items (takes about a minute)
-  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],}
-  \dontrun{ Anxiety$age, control=list(iter.qN=100,GHk=61,method="SANN"))}
+  \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")], Anxiety$age, model="GPCM") }
 ##print output
   \dontrun{print(age.dif)}
 ##print extended output
@@ -65,4 +64,6 @@ Maintainer: Seung W. Choi <s-choi@northwestern.edu>
   \dontrun{summary(age.dif.MC)}
 ##generate plots for Monte Carlo threshold values
   \dontrun{plot(age.dif.MC)}
+##run DFIT analysis
+  \dontrun{age.dif.DFIT<-DFIT(age.dif)}
 }

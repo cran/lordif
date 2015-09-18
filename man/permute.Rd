@@ -3,24 +3,24 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ performs permutation test for empirical cutoff thresholds }
 \description{
-  performs permutation tests under no-DIF conditions to generate empirical cutoff thresholds 
+  performs permutation tests under no-DIF conditions to generate empirical distributions of statistics 
 }
 \usage{
 permute(obj, alpha = 0.01, nr = 100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{obj}{ an object returned from lordif }
+  \item{obj}{ an object returned from \code{\link{lordif}} }
   \item{alpha}{ desired significance level (e.g., .01) }
   \item{nr}{ number of replications }
 }
 \details{
   The vector of group designations is randomly shuffled nr times to estimate the sampling distribution
   of the statistics when the null hypothesis is true.
-  Returns empirical thresholds for various statistics and effect size measures.
+  Returns empirical distributions and thresholds for various statistics and effect size measures.
 }
 \value{
-  Returns a list of class "lordif.MC" with the following components:
+  Returns an object (list) of class "lordif.MC" with the following components:
   \item{call}{calling expression}
   \item{chi12}{prob associated with the LR Chi-square test comparing Model 1 vs. 2}
   \item{chi13}{prob associated with the LR Chi-square test comparing Model 1 vs. 3}
@@ -42,7 +42,7 @@ permute(obj, alpha = 0.01, nr = 100)
 \references{
   Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
 \note{
   nr must be a large integer (e.g., 500) for smooth distributions.
 }

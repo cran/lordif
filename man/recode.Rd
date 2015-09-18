@@ -6,7 +6,7 @@
   Recodes item responses as specified by original and modified
 }
 \usage{
-recode(vec, original, modified)
+  recode(vec, original, modified)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,7 +21,7 @@ recode(vec, original, modified)
 \value{
   Returns a vector of the same length and mode as vec with recoded values.
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
 \examples{
 x <- c(0,1,2,3,4,0,1,2,3,4)
 y <- c(0,1,2,3,4)

@@ -3,25 +3,29 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ determines a cutoff threshold }
 \description{
-  Determines cutoff thresholds for statistics generated from Monte Carlo simulations
+  Determines an empirical cutoff value for statistics generated from a Monte Carlo simulation.
 }
 \usage{
-getcutoff(stat, alpha, reverse)
+  getcutoff(stat, alpha, reverse)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{stat}{ a vector containing statistics sampled from a Monte Carlo simulation }
-  \item{alpha}{ a value determining the proportion to be cut off from the bottom (or top) of stat }
-  \item{reverse}{ if TRUE it cuts off the right tail }
+  \item{alpha}{ a p-value specifying the quantile of the statistics to be determined, e.g., (alpha x 100)th percentile }
+  \item{reverse}{ if TRUE, the quantile is determined by (1-alpha) }
 }
 \details{
-  if reversed is TRUE it cuts off the right tail (i.e., largest values)
+  Calculates the quantile value of statistics sampled from a Monte Carlo simulation. 
+  For example, when alpha = 0.1 the function determines the 1st percentile of the statistics.
+  Conversely, if reverse is True, the function determines the 99th percentile, i.e., (1-alpha) x 100.
 }
 \value{
-  returns a scalar that cuts off the designated proportion (specified by alpha)
+  returns a scalar corresponding to the quantile of the statistics determined by alpha or (1-alpha)
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
-\seealso{ \code{\link{montecarlo}} }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
+\seealso{ 
+  \code{\link{montecarlo}}, \code{\link{permute}}
+}
 \examples{
 #top 1 percent
 getcutoff(runif(1000),0.01,TRUE)
@@ -30,4 +34,3 @@ getcutoff(runif(1000),0.01,FALSE)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-

@@ -34,7 +34,7 @@
   
   Crane, P. K., Gibbons, L. E., Jolley, L., and van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
 \seealso{ \code{\link{runolr}},  \code{\link{lordif}} }
 \examples{
 ##

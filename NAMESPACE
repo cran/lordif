@@ -1,7 +1,7 @@
 # Exported functions 
 export(lordif, montecarlo, calcprob, calctheta, collapse, equate,    
-       extract, getcutoff, probgrm, recode, rundif, runolr,    
-       separate, tcc, plot.lordif, plot.lordif.MC, permute )
+       extract, getcutoff, probgrm, probgpcm, recode, rundif, runolr,    
+       separate, tcc, plot.lordif, plot.lordif.MC, permute, DFIT )
 S3method(print, lordif)
 S3method(print, lordif.MC)
 S3method(summary, lordif)
@@ -9,4 +9,11 @@ S3method(summary, lordif.MC)
 S3method(plot, lordif)
 S3method(plot, lordif.MC)
 # Imported functions
-importFrom("ltm", grm)
+importFrom(mirt, mirt)
+importFrom(rms,lrm)
+importFrom("grDevices", dev.new)
+importFrom("graphics", "abline", "boxplot", "layout", "legend",
+           "lines", "par", "plot", "points", "text")
+importFrom("stats4", "coef")
+importFrom("stats", "cov", "density", "dnorm", "nlminb",
+           "pchisq", "quantile", "runif", "var") 

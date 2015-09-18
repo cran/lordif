@@ -6,11 +6,11 @@
   Splits item response vectors of DIF items into separate group-specific vectors.
 }
 \usage{
-separate(resp, flag, gr)
+  separate(resp, flag, gr)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{resp}{ a data frame (or matrix) of item response vectors }
+  \item{resp}{ a data frame (or matrix) of item responses }
   \item{flag}{ a vector of DIF flags }
   \item{gr}{ a vector of group identifiers }
 }
@@ -22,7 +22,7 @@ separate(resp, flag, gr)
   Returns a data frame with item response vectors for non-DIF items followed by
   separated item response vectors for DIF items
 }
-\author{ Seung W. Choi <s-choi@northwestern.edu> }
+\author{ Seung W. Choi <choi.phd@gmail.com> }
 \seealso{ \code{\link{lordif}} }
 \examples{
 ##

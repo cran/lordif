@@ -1,16 +1,25 @@
 extract <-
 function(ipar) {
-ncat<-unlist(lapply(ipar$coefficients,length))
-maxCat<-max(ncat)
-ni<-length(ipar$coefficients)
-out.ipar<-data.frame(matrix(NA,ni,maxCat))
-names(out.ipar)<-c("a",paste("cb",1:(maxCat-1),sep=""))
-for (i in 1:ni) {
-out.ipar[i,1]<-ipar$coefficients[[i]][ncat[i]]
-for (j in 1:(ncat[i]-1)) {
-out.ipar[i,j+1]<-ipar$coefficients[[i]][j]/out.ipar[i,1]
-}
-}
-if (all(out.ipar[,1]<0)) out.ipar<- -out.ipar
-return(out.ipar)
-}
+    calib<-coef(ipar,IRTpars=TRUE)
+    ni<-length(calib)-1
+    calib<-calib[1:ni]
+    ncat<-unlist(lapply(calib,length)) 
+    maxCat<-max(ncat)
+    out.ipar<-data.frame(matrix(NA,ni,maxCat))
+    names(out.ipar)<-c("a",paste("cb",1:(maxCat-1),sep=""))
+    for (i in 1:ni) {
+      out.ipar[i,1]<-calib[[i]][1]
+      for (j in 1:(ncat[i]-1)) {
+        out.ipar[i,j+1]<-calib[[i]][j+1]
+      }
+    }
+    if (all(out.ipar[,1]<0)) {
+      out.ipar<- -out.ipar
+    } else if (any(out.ipar[,1]<0)) {
+      cat("ERROR: The following items had negative slope parameters.\n")
+	  cat(paste(which(out.ipar[,1]<0),sep="",collapse=","))
+	  cat(paste("ERROR: The following items had negative slope parameters (",paste(which(out.ipar[,1]<0),sep="",collapse=","),").\n",sep=""))
+      cat("\n")
+    }
+    return(out.ipar)
+  }

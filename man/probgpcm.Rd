@@ -1,12 +1,12 @@
-\name{probgrm}
-\alias{probgrm}
+\name{probgpcm}
+\alias{probgpcm}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ calculates item response probabilities according to GRM }
+\title{ calculates item response probabilities according to GPCM }
 \description{
   Calculates a matrix of item response probabilities over a grid of theta values for an item
 }
 \usage{
-probgrm(theta, a, cb)
+probgpcm(theta, a, cb)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -15,16 +15,16 @@ probgrm(theta, a, cb)
   \item{cb}{ a vector of category threshold values }
 }
 \details{
-  Graded Response Model (Samejima, 1969) is assumed.
+  Generalized Partial Credit Model (Muraki, 1992) is assumed.
 }
 \value{
   Returns a matrix of item response probabilities. The first dimension corresponds to the length of theta.
 }
-\references{ Samejima, F. (1969). Estimation of latent ability using a response pattern of graded scores. Psychometrika Monograph, 17. }
+\references{ Muraki, E. (1992). A generalized partial credit model: Application of an EM algorithm. Applied Psychological Measurement, 16, 159-176. }
 \author{ Seung W. Choi <choi.phd@gmail.com> }
 \seealso{ 
-  \code{\link{calcprob}},
-  \code{\link{probgpcm}}  
+	\code{\link{calcprob}},
+	\code{\link{probgrm}}
 }
 \examples{
 ##

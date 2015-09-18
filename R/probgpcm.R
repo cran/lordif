@@ -1,4 +1,4 @@
-probgrm <-
+probgpcm <-
 function(theta,a,cb) {
     if (any(is.na(theta))) stop("theta is empty")
     if (a<=0 || is.na(a)) stop("slope is missing or negative")
@@ -7,18 +7,19 @@ function(theta,a,cb) {
       if (any(is.na(cb[1:(ncat-1)]))) stop("cb is invalid")
     } else ncat<-length(cb)+1
     if (ncat<2) stop("cb is empty")
-    if (all(order(cb[!is.na(cb)])!=1:(ncat-1))) stop("cb is not in order")
     nq<-length(theta)
     pp<-matrix(NA,nq,ncat)
-    ps<-matrix(0,nq,ncat)
-    ps[,1]<-1
-    for (k in 1:(ncat-1)) {
-      ps[,k+1]<-1/(1+exp(-a*(theta-unlist(cb[k]))))
+    cb<-c(0,unlist(cb))
+    zz<-matrix(0,nq,ncat)
+    sdsum<-0
+    den<-rep(0,nq)
+    for (k in 1:ncat) {
+      sdsum<-sdsum+cb[k]
+      zz[,k]<-exp(a*(k*theta-sdsum))
+      den<-den+zz[,k]
     }
-    pp[,1]<-1-ps[,1]
-    pp[,ncat]<-ps[,ncat]
-    for (k in 1:(ncat-1)) {
-      pp[,k]=ps[,k]-ps[,k+1]
+    for (k in 1:ncat) {
+      pp[,k]<-zz[,k]/den
     }
     return(pp)
   }
