@@ -1,22 +1,27 @@
 \name{runolr}
 \alias{runolr}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ runs ordinal logistic regression models }
+\title{
+  runs ordinal logistic regression models
+}
 \description{
   Runs ordinal logistic regression models and produces DIF statistics and effect size measures
 }
 \usage{
-  runolr(rv, ev, gr)
+runolr(rv, ev, gr, wt)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{rv}{ a response variable }
   \item{ev}{ an explanatory variable (e.g., conditioning variable) }
   \item{gr}{ a vector of group identifiers }
+  \item{wt}{ a vector of optional sample weights }
 }
 \details{
-  Model 1: ev  
-  Model 2: ev + gr  
+  Model 1: ev
+  
+  Model 2: ev + gr
+  
   Model 3: ev*gr or equivalently ev + gr + ev*gr
 }
 \value{
@@ -47,16 +52,24 @@
   \item{df13}{df for the LR Chi-square comparing Model 1 and Model 3}
   \item{df23}{df for the LR Chi-square comparing Model 2 and Model 3}
 }
-\references{ 
+\references{
   Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
   
   Crane, P. K., Gibbons, L. E., Jolley, L., & van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
-\author{ Seung W. Choi <choi.phd@gmail.com> }
-\seealso{ \code{\link{rundif}},  \code{\link{lordif}} }
+\author{
+  Seung W. Choi <choi.phd@gmail.com>
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+  \code{\link{rundif}},  \code{\link{lordif}}, \code{\link[rms:rms]{rms}}
+}
 \examples{
-##
 \dontrun{runolr(rv, ev, gr)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

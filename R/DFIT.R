@@ -1,6 +1,6 @@
 DFIT <-
 function(obj) {
-    if (class(obj)!="lordif") stop(paste(deparse(substitute(obj)),"must be of class lordif"))
+    if (class(obj)!="lordif") stop(paste(deparse(substitute(obj))," must be of class lordif"))
     options<-obj$options
     model<-options$model
     control<-options$control
@@ -57,7 +57,7 @@ function(obj) {
         NCDIF[i,g-1]<-var(di[,i])+mean.di[i]^2
       }
       DTF[g-1]<-sum(CDIF[,g-1])
-      cat(paste("DTF (",group.names[g],") = ", round(DTF[g-1],digits=4),"\n",sep=""))
+      cat(paste0("DTF (",group.names[g],") = ", round(DTF[g-1],digits=4),"\n"))
     }
     out<-obj
     out[["DFIT"]]<-list(CDIF=CDIF,NCDIF=NCDIF,DTF=DTF,ipar=ipar.group,TCC=tcc.group)

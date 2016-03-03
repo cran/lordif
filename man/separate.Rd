@@ -1,7 +1,9 @@
 \name{separate}
 \alias{separate}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ splits item response vectors of DIF items by group }
+\title{
+  splits item response vectors of DIF items by group
+}
 \description{
   Splits item response vectors of DIF items into separate group-specific vectors.
 }
@@ -22,11 +24,15 @@
   Returns a data frame with item response vectors for non-DIF items followed by
   separated item response vectors for DIF items
 }
-\author{ Seung W. Choi <choi.phd@gmail.com> }
-\seealso{ \code{\link{lordif}} }
+
+\author{
+  Seung W. Choi <choi.phd@gmail.com>
+}
+
 \examples{
-##
 \dontrun{separate(resp,flag,gr)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

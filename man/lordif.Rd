@@ -8,12 +8,11 @@
   performs iterative hybrid ordinal logistic regression/IRT DIF
 }
 \usage{
-  lordif(resp.data, group, selection = NULL,
-  criterion = c("Chisqr", "R2", "Beta"),
-  pseudo.R2 = c("McFadden", "Nagelkerke", "CoxSnell"), alpha = 0.01,
-  beta.change = 0.1, R2.change = 0.02, maxIter = 10, minCell = 5,
-  minTheta = -4, maxTheta = 4, inc = 0.1, control = list(), model = "GRM",
-  anchor = NULL, MonteCarlo = FALSE, nr = 100)
+lordif(resp.data, group, selection = NULL, criterion = c("Chisqr", "R2", "Beta"), 
+pseudo.R2 = c("McFadden", "Nagelkerke", "CoxSnell"), alpha = 0.01, beta.change = 0.1, 
+R2.change = 0.02, maxIter = 10, minCell = 5, minTheta = -4, maxTheta = 4, inc = 0.1, 
+control = list(), model = "GRM", anchor = NULL, MonteCarlo = FALSE, nr = 100, 
+weights = NULL, normwt = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -35,13 +34,15 @@
   \item{anchor}{ a vector specifying items to be used as anchors or NULL to determine anchors through purification }
   \item{MonteCarlo}{ TRUE to trigger Monte Carlo simulations to determine empirical thresholds }
   \item{nr}{ number of replications for Monte Carlo simulations }
+  \item{weights}{an optional vector (same length as nobs) of fractional case weights (refer to the \code{\link{lrm}} function in the \pkg{rms} package which currently generates warning messages)}
+  \item{normwt}{set to TRUE to scale weights so they sum to nobs}
 }
 \details{
   Performs an ordinal (common odds-ratio) logistic regression differential item functioning (DIF) analysis using IRT theta estimates  
   as the conditioning variable. The graded response model (GRM) or the generalized partial credit model (GPCM) is used for IRT trait estimation.  
   Items flagged for DIF are treated as unique items and group-specific item parameters are obtained. Non-DIF items serve as anchor items to
   the initial single-group calibration. The procedure runs iteratively until the same set of items is flagged over two consecutive iterations,
-  unless anchor items are specified. 
+  unless anchor items are specified.
 }
 \value{
   Returns an object (list) of class "lordif" with the following components:

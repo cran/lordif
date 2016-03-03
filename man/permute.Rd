@@ -1,9 +1,11 @@
 \name{permute}
 \alias{permute}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ performs permutation test for empirical cutoff thresholds }
+\title{
+  performs permutation test for empirical cutoff thresholds
+}
 \description{
-  performs permutation tests under no-DIF conditions to generate empirical distributions of statistics 
+  performs permutation tests under no-DIF conditions to generate empirical distributions of DIF statistics
 }
 \usage{
 permute(obj, alpha = 0.01, nr = 100)
@@ -42,23 +44,27 @@ permute(obj, alpha = 0.01, nr = 100)
 \references{
   Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
 }
-\author{ Seung W. Choi <choi.phd@gmail.com> }
+\author{
+  Seung W. Choi <choi.phd@gmail.com>}
 \note{
   nr must be a large integer (e.g., 500) for smooth distributions.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{ \code{\link{lordif}} }
+\seealso{
+  \code{\link{montecarlo}}, \code{\link{lordif}}
+}
 \examples{
 ##load PROMIS Anxiety sample data (n=766)
-  \dontrun{data(Anxiety)}
+\dontrun{data(Anxiety)}
 ##age : 0=younger than 65 or 1=65 or older
 ##run age-related DIF on all 29 items (takes about a minute)
-  \dontrun{age.DIF <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
+\dontrun{age.DIF <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
 ##the following takes several minutes
-  \dontrun{age.DIF.MC <- permute(age.DIF,alpha=0.01,nr=100)}
+\dontrun{age.DIF.MC <- permute(age.DIF,alpha=0.01,nr=100)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

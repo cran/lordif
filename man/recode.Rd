@@ -1,7 +1,9 @@
 \name{recode}
 \alias{recode}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ recodes item responses }
+\title{
+  recodes item responses
+}
 \description{
   Recodes item responses as specified by original and modified
 }
@@ -21,7 +23,12 @@
 \value{
   Returns a vector of the same length and mode as vec with recoded values.
 }
-\author{ Seung W. Choi <choi.phd@gmail.com> }
+\author{
+  Seung W. Choi <choi.phd@gmail.com>
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
 \examples{
 x <- c(0,1,2,3,4,0,1,2,3,4)
 y <- c(0,1,2,3,4)
@@ -31,3 +38,5 @@ recode(x,y,z)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

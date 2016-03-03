@@ -1,13 +1,14 @@
 \name{rundif}
 \alias{rundif}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ runs ordinal logistic regression DIF }
+\title{
+  runs ordinal logistic regression DIF
+}
 \description{
   Runs ordinal logistic regression DIF
 }
 \usage{
-  rundif(item, resp, theta, gr, criterion, alpha, beta.change, 
-         pseudo.R2, R2.change)
+rundif(item, resp, theta, gr, criterion, alpha, beta.change, pseudo.R2, R2.change, wt)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,6 +21,7 @@
   \item{beta.change}{ proportional change for Beta criterion }
   \item{pseudo.R2}{ pseudo R-squared measure (i.e., "McFadden", "Nagelkerke", or "CoxSnell") }
   \item{R2.change}{ R-squared change for pseudo R-squared criterion }
+  \item{wt}{ optional sample weights }
 }
 \details{
   The argument item lists the column numbers of the data frame resp to be included in the analysis.
@@ -30,15 +32,23 @@
   \item{flag}{a logical vector of DIF flags}
 }
 \references{
-  Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
+Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
   
   Crane, P. K., Gibbons, L. E., Jolley, L., and van Belle, G. (2006). Differential item functioning analysis with ordinal logistic regression techniques: DIF detect and difwithpar. Medical Care, 44(11 Suppl 3), S115-S123.
 }
-\author{ Seung W. Choi <choi.phd@gmail.com> }
-\seealso{ \code{\link{runolr}},  \code{\link{lordif}} }
+\author{
+  Seung W. Choi <choi.phd@gmail.com>
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+  \code{\link{runolr}},  \code{\link{lordif}}
+}
 \examples{
-##
 \dontrun{rundif(item,resp,theta,gr)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
+\keyword{ ~kwd1 }
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

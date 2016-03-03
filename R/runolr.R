@@ -1,10 +1,10 @@
 runolr <-
-function(rv,ev,gr) {
+function(rv,ev,gr,wt) {
     ng<-length(table(gr))
     nobs<-length(rv)
-    md1<-lrm(rv ~ ev)
-    md2<-lrm(rv ~ ev + gr)
-    md3<-lrm(rv ~ ev*gr)
+    md1<-lrm(rv ~ ev, weights=wt)
+    md2<-lrm(rv ~ ev + gr, weights=wt)
+    md3<-lrm(rv ~ ev*gr, weights=wt)
     beta12<-round(abs((md2$coefficients[["ev"]]-md1$coefficients[["ev"]])/md1$coefficients[["ev"]]),4)
     deviance0<-md1$deviance[1]
     deviance1<-md1$deviance[2]

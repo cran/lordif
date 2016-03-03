@@ -7,7 +7,7 @@ function(theta,a,cb) {
       if (any(is.na(cb[1:(ncat-1)]))) stop("cb is invalid")
     } else ncat<-length(cb)+1
     if (ncat<2) stop("cb is empty")
-    if (all(order(cb[!is.na(cb)])!=1:(ncat-1))) stop("cb is not in order")
+    if (all(order(cb[!is.na(cb)])!=1:(ncat-1))) stop("cb is disordinal")
     nq<-length(theta)
     pp<-matrix(NA,nq,ncat)
     ps<-matrix(0,nq,ncat)

@@ -1,36 +1,43 @@
 permute <-
 function(obj,alpha=0.01,nr=100) {
     call<-match.call()
-    if (class(obj)!="lordif") stop(paste(deparse(substitute(obj)),"must be of class lordif"))
-    if (alpha<0 | alpha>1) stop("alpha must be a fraction between 0 and 1")
+    if (class(obj)!="lordif") stop(paste(deparse(substitute(obj))," must be of class lordif"))
+    if (alpha<0 || alpha>1) {
+      warning("alpha must be a fraction between 0 and 1; will be reset to .01")
+      alpha<-.01
+    }
     if (nr<100) warning("number of replications is less than 100")
-    if (nr<=0) stop("number of replications is not a positive integer")
+    if (nr<=0) {
+      warning("number of replications is not a positive integer; will be reset to 100")
+      nr<-100
+    }
     options<-obj$options
     ipar<-obj$ipar
     group<-obj$group
+    weights<-obj$weights
     ncat<-obj$ncat
     resp<-obj$recoded
     theta<-obj$calib$theta
     selection<-obj$selection
     nobs<-length(theta)
     ni<-nrow(ipar)
-    chi12<-matrix(NA,nr,ni);rownames(chi12)<-paste("Rep",1:nr,sep="");colnames(chi12)<-paste("I",selection,sep="")
-    chi13<-matrix(NA,nr,ni);rownames(chi13)<-paste("Rep",1:nr,sep="");colnames(chi13)<-paste("I",selection,sep="")
-    chi23<-matrix(NA,nr,ni);rownames(chi23)<-paste("Rep",1:nr,sep="");colnames(chi23)<-paste("I",1:ni,sep="")
-    pseudo12.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo12.CoxSnell)<-paste("Rep",1:nr,sep="");colnames(pseudo12.CoxSnell)<-paste("I",selection,sep="")
-    pseudo13.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo13.CoxSnell)<-paste("Rep",1:nr,sep="");colnames(pseudo13.CoxSnell)<-paste("I",selection,sep="")
-    pseudo23.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo23.CoxSnell)<-paste("Rep",1:nr,sep="");colnames(pseudo23.CoxSnell)<-paste("I",selection,sep="")
-    pseudo12.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo12.Nagelkerke)<-paste("Rep",1:nr,sep="");colnames(pseudo12.Nagelkerke)<-paste("I",selection,sep="")
-    pseudo13.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo13.Nagelkerke)<-paste("Rep",1:nr,sep="");colnames(pseudo13.Nagelkerke)<-paste("I",selection,sep="")
-    pseudo23.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo23.Nagelkerke)<-paste("Rep",1:nr,sep="");colnames(pseudo23.Nagelkerke)<-paste("I",selection,sep="")
-    pseudo12.McFadden<-matrix(NA,nr,ni);rownames(pseudo12.McFadden)<-paste("Rep",1:nr,sep="");colnames(pseudo12.McFadden)<-paste("I",selection,sep="")
-    pseudo13.McFadden<-matrix(NA,nr,ni);rownames(pseudo13.McFadden)<-paste("Rep",1:nr,sep="");colnames(pseudo13.McFadden)<-paste("I",selection,sep="")
-    pseudo23.McFadden<-matrix(NA,nr,ni);rownames(pseudo23.McFadden)<-paste("Rep",1:nr,sep="");colnames(pseudo23.McFadden)<-paste("I",selection,sep="")
-    beta12<-matrix(NA,nr,ni);rownames(beta12)<-paste("Rep",1:nr,sep="");colnames(beta12)<-paste("I",selection,sep="")
-    cat(paste("Start time:",date(),"\n\n"))
+    chi12<-matrix(NA,nr,ni);rownames(chi12)<-paste0("Rep",1:nr);colnames(chi12)<-paste0("I",selection)
+    chi13<-matrix(NA,nr,ni);rownames(chi13)<-paste0("Rep",1:nr);colnames(chi13)<-paste0("I",selection)
+    chi23<-matrix(NA,nr,ni);rownames(chi23)<-paste0("Rep",1:nr);colnames(chi23)<-paste0("I",selection)
+    pseudo12.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo12.CoxSnell)<-paste0("Rep",1:nr);colnames(pseudo12.CoxSnell)<-paste0("I",selection)
+    pseudo13.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo13.CoxSnell)<-paste0("Rep",1:nr);colnames(pseudo13.CoxSnell)<-paste0("I",selection)
+    pseudo23.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo23.CoxSnell)<-paste0("Rep",1:nr);colnames(pseudo23.CoxSnell)<-paste0("I",selection)
+    pseudo12.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo12.Nagelkerke)<-paste0("Rep",1:nr);colnames(pseudo12.Nagelkerke)<-paste0("I",selection)
+    pseudo13.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo13.Nagelkerke)<-paste0("Rep",1:nr);colnames(pseudo13.Nagelkerke)<-paste0("I",selection)
+    pseudo23.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo23.Nagelkerke)<-paste0("Rep",1:nr);colnames(pseudo23.Nagelkerke)<-paste0("I",selection)
+    pseudo12.McFadden<-matrix(NA,nr,ni);rownames(pseudo12.McFadden)<-paste0("Rep",1:nr);colnames(pseudo12.McFadden)<-paste0("I",selection)
+    pseudo13.McFadden<-matrix(NA,nr,ni);rownames(pseudo13.McFadden)<-paste0("Rep",1:nr);colnames(pseudo13.McFadden)<-paste0("I",selection)
+    pseudo23.McFadden<-matrix(NA,nr,ni);rownames(pseudo23.McFadden)<-paste0("Rep",1:nr);colnames(pseudo23.McFadden)<-paste0("I",selection)
+    beta12<-matrix(NA,nr,ni);rownames(beta12)<-paste0("Rep",1:nr);colnames(beta12)<-paste0("I",selection)
+    cat(paste0("Start time: ",date(),"\n\n"))
     for (r in 1:nr) {
       group.random<-group[sample(nobs)]
-      out<-rundif(1:ni,resp,theta,group.random,options$criterion,options$alpha,options$beta.change,options$pseudo.R2,options$R2.change)
+      out<-rundif(1:ni,resp,theta,group.random,options$criterion,options$alpha,options$beta.change,options$pseudo.R2,options$R2.change,weights)
       chi12[r,]<-out$stats$chi12
       chi13[r,]<-out$stats$chi13
       chi23[r,]<-out$stats$chi23
@@ -44,9 +51,9 @@ function(obj,alpha=0.01,nr=100) {
       pseudo13.McFadden[r,]<-out$stats$pseudo13.McFadden
       pseudo23.McFadden[r,]<-out$stats$pseudo23.McFadden
       beta12[r,]<-out$stats$beta
-      cat(paste(" Replication: ",r,"\n",sep=""))
+      cat(paste0(" Replication: ",r,"\n"))
     }
-    cat(paste("\nEnd time:",date(),"\n"))
+    cat(paste0("\nEnd time: ",date(),"\n"))
     stat<-c("chi12","chi13","chi23","pseudo12.CoxSnell","pseudo13.CoxSnell","pseudo23.CoxSnell","pseudo12.Nagelkerke","pseudo13.Nagelkerke","pseudo23.Nagelkerke","pseudo12.McFadden","pseudo13.McFadden","pseudo23.McFadden","beta12")
     cutoff<-matrix(NA,ni,length(stat))
     for (i in 1:ni) {
@@ -65,7 +72,7 @@ function(obj,alpha=0.01,nr=100) {
       cutoff[i,13]<-getcutoff(beta12[,i],alpha,T)
     }
     colnames(cutoff)<-stat
-    rownames(cutoff)<-paste("I",selection,sep="")
+    rownames(cutoff)<-paste0("I",selection)
     out<-list(call=call,chi12=chi12,chi13=chi13,chi23=chi23,
               pseudo12.CoxSnell=pseudo12.CoxSnell,pseudo13.CoxSnell=pseudo13.CoxSnell,pseudo23.CoxSnell=pseudo23.CoxSnell,
               pseudo12.Nagelkerke=pseudo12.Nagelkerke,pseudo13.Nagelkerke=pseudo13.Nagelkerke,pseudo23.Nagelkerke=pseudo23.Nagelkerke,

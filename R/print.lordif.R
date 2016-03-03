@@ -5,7 +5,8 @@ function(x, ...) {
     cat("\n")
     cat(paste("  Number of DIF groups:",x$ng,"\n\n"))
     cat(paste("  Number of items flagged for DIF:",sum(x$flag),"of",x$ni,"\n\n"))
-    cat(paste("  Items flagged:",paste(which(x$flag),collapse=", "),"\n\n"))
+    #cat(paste("  Items flagged:",paste(which(x$flag),collapse=", "),"\n\n"))
+    cat(paste("  Items flagged:",paste(x$selection[which(x$flag)],collapse=", "),"\n\n"))
     cat(paste("  Number of iterations for purification:",x$iteration,"of",x$options$maxIter,"\n\n"))
     cat(paste("  Detection criterion:",x$options$criterion,"\n\n"))
     threshold<-switch(toupper(x$options$criterion),

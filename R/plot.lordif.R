@@ -1,10 +1,13 @@
 plot.lordif <-
 function(x,labels=c("Reference","Focal"),width=7,height=7,...) {
+    ndif<-sum(x$flag)
+    if (ndif==0) stop(paste(deparse(substitute(x))), " contains no items flagged for DIF")
+    if (ndif==x$ni) stop("all items in ", paste(deparse(substitute(x))), " have been flagged for DIF")
+    if (x$ng != length(labels)) labels<-paste("Group",1:x$ng)
     sumpp<-function(pp) {
       ws<-rowSums(pp*(col(pp)-1))
       return(ws)
     }
-    ndif<-sum(x$flag)
     maxcat<-ncol(x$ipar.sparse)
     sysname<-Sys.info()[["sysname"]]
     if(sysname=="Windows") {
@@ -18,6 +21,7 @@ function(x,labels=c("Reference","Focal"),width=7,height=7,...) {
     par(mfrow=c(1,1))
     theta<-seq(x$options$minTheta,x$options$maxTheta,x$options$inc)
     difitems<-(1:x$ni)[x$flag]
+    difselections<-x$selection[x$flag]
     itemnames<-row.names(x$ipar.sparse)
     gpar<-array(NA,c(ndif,maxcat,x$ng))
     cpar<-as.matrix(x$ipar.sparse[1:(x$ni-ndif),])
@@ -35,9 +39,9 @@ function(x,labels=c("Reference","Focal"),width=7,height=7,...) {
     par(mfrow=c(2,2))
     for (i in 1:length(difitems)) {
       ncat<-x$ncat[difitems[i]]
-      plot(theta,seq(0,ncat-1,along.with=theta),type="n",xlab="theta",ylab="Item Score",main=paste("Item True Score Functions - Item ",difitems[i],sep=""),...)
+      plot(theta,seq(0,ncat-1,along.with=theta),type="n",xlab="theta",ylab="Item Score",main=paste0("Item True Score Functions - Item ",difselections[i]),...)
       for (g in 1:x$ng) {
-        gpar[i,,g]<-unlist(x$ipar.sparse[which(itemnames==paste("I",difitems[i],".",g,sep="")),])
+        gpar[i,,g]<-unlist(x$ipar.sparse[which(itemnames==paste0("I",difselections[i],".",g)),])
         if(x$options$model=="GPCM") pp[,i,1:ncat,g]<-probgpcm(theta,gpar[i,1,g],gpar[i,2:ncat,g]) else pp[,i,1:ncat,g]<-probgrm(theta,gpar[i,1,g],gpar[i,2:ncat,g])
         lines(theta,sumpp(pp[,i,1:ncat,g]),lty=g,col=g)
       }

@@ -32,12 +32,12 @@
 \seealso{ \code{\link{lordif}} }
 \examples{
 ##load PROMIS Anxiety sample data (n=766)
-  \dontrun{data(Anxiety)}
+\dontrun{data(Anxiety)}
 ##age : 0=younger than 65 or 1=65 or older
 ##run age-related DIF on all 29 items (takes about a minute)
-  \dontrun{age.DIF <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
+\dontrun{age.DIF <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
 ##run DFIT
-  \dontrun{age.DIF.DFIT <- DFIT(age.DIF)}
+\dontrun{age.DIF.DFIT <- DFIT(age.DIF)}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

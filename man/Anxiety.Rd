@@ -3,8 +3,7 @@
 \docType{data}
 \title{A Measure of Anxiety}
 \description{
-  The data contains responses from 766 people sampled from a general population to the PROMIS Anxiety scale (\url{http://www.nihpromis.org})
-  composed of 29 Likert-type questions with a common rating scale (1=Never, 2=Rarely, 3=Sometimes, 4=Often, and 5=Always).
+  The data contains responses from 766 people sampled from a general population to the PROMIS Anxiety scale (\url{http://www.nihpromis.org}) composed of 29 Likert-type questions with a common rating scale (1=Never, 2=Rarely, 3=Sometimes, 4=Often, and 5=Always).
 }
 \usage{data(Anxiety)}
 \format{
