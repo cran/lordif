@@ -1,6 +1,5 @@
 \name{lordif}
 \alias{lordif}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   performs Logistic Ordinal Regression Differential Item Functioning using IRT
 }
@@ -14,7 +13,6 @@ R2.change = 0.02, maxIter = 10, minCell = 5, minTheta = -4, maxTheta = 4, inc = 
 control = list(), model = "GRM", anchor = NULL, MonteCarlo = FALSE, nr = 100, 
 weights = NULL, normwt = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{resp.data}{ data frame or matrix containing item responses }
   \item{group}{ a vector of group designations }
@@ -29,12 +27,12 @@ weights = NULL, normwt = TRUE)
   \item{minTheta}{ minimum for theta grid }
   \item{maxTheta}{ maximum for theta grid }
   \item{inc}{ increment for theta grid }
-  \item{control}{ a list of control variables (refer to the \code{\link{mirt}} function in the \pkg{mirt} package) }
+  \item{control}{ a list of control variables (refer to the \code{\link[mirt:mirt]{mirt::mirt()}} function in the \pkg{mirt} package) }
   \item{model}{ IRT model of choice, either "GRM" or "GPCM" (default: "GRM") }
   \item{anchor}{ a vector specifying items to be used as anchors or NULL to determine anchors through purification }
   \item{MonteCarlo}{ TRUE to trigger Monte Carlo simulations to determine empirical thresholds }
   \item{nr}{ number of replications for Monte Carlo simulations }
-  \item{weights}{an optional vector (same length as nobs) of fractional case weights (refer to the \code{\link{lrm}} function in the \pkg{rms} package which currently generates warning messages)}
+  \item{weights}{an optional vector (same length as nobs) of fractional case weights (refer to the \code{\link[rms:lrm]{rms::lrm()}} function in the \pkg{rms} package which currently generates warning messages)}
   \item{normwt}{set to TRUE to scale weights so they sum to nobs}
 }
 \details{
@@ -79,8 +77,6 @@ weights = NULL, normwt = TRUE)
   requires the \pkg{mirt} and \pkg{rms} packages
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{ \code{\link{rundif}} }
 \examples{
   \dontrun{data(Anxiety)}
@@ -89,5 +85,3 @@ weights = NULL, normwt = TRUE)
   \dontrun{age.DIF <- lordif(resp.data,age,model="GPCM",anchor=c(1:5,7,8,10,12:17,19:23,25:29))}
   \dontrun{print(age.DIF)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

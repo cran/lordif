@@ -1,6 +1,5 @@
 \name{plot.lordif.MC}
 \alias{plot.lordif.MC}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   Plot method for Monte Carlo simulation output
 }
@@ -8,15 +7,14 @@
   Produces plots for Monte Carlo output
 }
 \usage{
-  \method{plot}{lordif.MC}(x, mfrow = c(3, 1), width = 7, height = 7, \dots)
-%plot.lordif.MC(x, mfrow = c(3, 1), width = 7, height = 7, ...)
+  \method{plot}{lordif.MC}(x, mfrow = c(3, 1), width = 7, height = 7, BW = FALSE, \dots)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{ an object of class lordif.MC returned from \code{\link{montecarlo}} }
   \item{mfrow}{ number of rows and columns per page for multi-fane plots }
   \item{width}{ width of the canvas of the plotting device in inches }
   \item{height}{ height of the canvas of the plotting device in inches }
+  \item{BW}{ whether to plot in black-and-white rather than in color }
   \item{...}{ extra graphical parameters }
 }
 \details{
@@ -43,8 +41,6 @@
   x is an object of class lordif.MC returned from \code{\link{montecarlo}}
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
   \code{\link{lordif}}, \code{\link{montecarlo}}, \code{\link{permute}}
 }
@@ -54,7 +50,3 @@
 \dontrun{age.dif.MC <- montecarlo(age.dif,alpha=.05,nr=500)}
 \dontrun{plot(age.dif.MC,mfrow=c(1,1),width=8,height=7)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

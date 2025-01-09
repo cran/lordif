@@ -1,19 +1,17 @@
 \name{extract}
 \alias{extract}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ extracts IRT item parameters }
 \description{
-  Extracts IRT item parameter estimates from an output returned from \code{\link{mirt}}
+  Extracts IRT item parameter estimates from an output returned from \code{\link[mirt:mirt]{mirt::mirt()}}
 }
 \usage{
   extract(ipar)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{ipar}{ output from the \code{\link{mirt}} function of the mirt package }
+  \item{ipar}{ output from the \code{\link[mirt:mirt]{mirt::mirt()}} function of the \pkg{mirt} package }
 }
 \details{
-  similar to the coef function in the mirt package
+  similar to the coef function in the \pkg{mirt} package
 }
 \value{
   a data frame containing item parameter estimates in the order of 
@@ -21,11 +19,9 @@
 }
 \author{ Seung W. Choi <choi.phd@gmail.com> }
 \seealso{ 
-  \code{\link{lordif}}, \code{\link{mirt}}
+  \code{\link{lordif}}, \code{\link[mirt:mirt]{mirt::mirt()}}
 }
 \examples{
 ##calib.sparse <- mirt(sparse.matrix,1,itemtype="gpcm") 
 \dontrun{ipar.sparse <- extract(calib.sparse)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

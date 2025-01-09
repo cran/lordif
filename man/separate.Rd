@@ -1,6 +1,6 @@
 \name{separate}
 \alias{separate}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
   splits item response vectors of DIF items by group
 }
@@ -10,7 +10,7 @@
 \usage{
   separate(resp, flag, gr)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{resp}{ a data frame (or matrix) of item responses }
   \item{flag}{ a vector of DIF flags }
@@ -32,7 +32,3 @@
 \examples{
 \dontrun{separate(resp,flag,gr)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

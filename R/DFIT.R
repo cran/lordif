@@ -1,6 +1,6 @@
 DFIT <-
 function(obj) {
-    if (class(obj)!="lordif") stop(paste(deparse(substitute(obj))," must be of class lordif"))
+    if (!inherits(obj,"lordif")) stop(paste(deparse(substitute(obj))," must be of class lordif"))
     options<-obj$options
     model<-options$model
     control<-options$control

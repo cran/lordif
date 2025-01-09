@@ -1,6 +1,5 @@
 \name{calcprob}
 \alias{calcprob}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ calculates item response probabilities }
 \description{
   Calculates item response probabilities over a theta grid according to either the GRM or the GPCM.
@@ -8,7 +7,6 @@
 \usage{
   calcprob(ipar, theta, model = "GRM")
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{ipar}{ a data frame containing the following columns: a, cb1, cb2,..., cb(maxCat-1) }
   \item{theta}{ a grid of theta values, e.g., theta <- seq(-4,4,.1) }
@@ -41,5 +39,3 @@
 ##theta <- seq(-4,4,.1)
 \dontrun{calcprob(item.par,theta,model="GPCM")}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

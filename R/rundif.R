@@ -21,7 +21,7 @@ function(item,resp,theta,gr,criterion,alpha,beta.change,pseudo.R2,R2.change,wt) 
     flag.post<-logical(ni)
     for (i in 1:ni) {
       output<-try(runolr(resp[,i],theta,as.factor(gr),wt),silent=T)
-      if (class(output)=="try-error") output<-runolr(resp[,i],log((theta-min(theta)+0.01)/(max(theta)-theta+.01)),as.factor(gr),wt)
+      if (inherits(output,"try-error")) output<-runolr(resp[,i],log((theta-min(theta)+0.01)/(max(theta)-theta+.01)),as.factor(gr),wt)
       if (exists("output")) {
         beta12[i]<-output$beta12
         chi12[i]<-output$chi12

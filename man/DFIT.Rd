@@ -1,6 +1,5 @@
 \name{DFIT}
 \alias{DFIT}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ calculates DFIT statistics }
 \description{
   Calculates DFIT statistics using an object of class "lordif"
@@ -39,5 +38,3 @@
 ##run DFIT
 \dontrun{age.DIF.DFIT <- DFIT(age.DIF)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

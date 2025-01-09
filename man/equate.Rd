@@ -1,6 +1,5 @@
 \name{equate}
 \alias{equate}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ performs Stocking-Lord Equating }
 \description{
   Computes linear transformation constants to equate a set of GRM/GPCM item parameters to a target scale
@@ -10,7 +9,6 @@
   equate(ipar.to, ipar.from, theta, model = "GRM", start.AK = c(1, 0), 
   lower.AK = c(0.5, -2), upper.AK = c(2, 2))
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{ipar.to}{ a data frame containing target item parameters in the following order: a, cb1, cb2,..., cb(maxCat-1) }
   \item{ipar.from}{ a data frame containing to-be-equated item parameters in the following order: a, cb1, cb2,..., cb(maxCat-1) }
@@ -48,6 +46,3 @@
 #AK[1] contains the multiplicative constant
 #AK[2] contains the additive constant
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-

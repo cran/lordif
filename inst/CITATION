@@ -1,0 +1,22 @@
+citHeader("To cite lordif in publications, use:")
+
+bibentry(
+  bibtype = "Article",
+  title = "{lordif}: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations",
+  author = c(
+    person("Seung W.", "Choi"),
+    person("Laura E.", "Gibbons"),
+    person("Paul K.", "Crane")
+  ),
+  year = "2011",
+  doi = "10.18637/jss.v039.i08",
+  journal = "Journal of Statistical Software",
+  textVersion =
+    paste(
+      "Choi, S. W., Gibbons, L. E., & Crane, P. K. (2011).",
+      "lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations.",
+      "Journal of Statistical Software, 39(8), 1-30.",
+      "https://doi.org/10.18637/jss.v039.i08"
+    )
+)
+

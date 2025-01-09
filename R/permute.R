@@ -1,7 +1,7 @@
 permute <-
 function(obj,alpha=0.01,nr=100) {
     call<-match.call()
-    if (class(obj)!="lordif") stop(paste(deparse(substitute(obj))," must be of class lordif"))
+    if (!inherits(obj,"lordif")) stop(paste(deparse(substitute(obj))," must be of class lordif"))
     if (alpha<0 || alpha>1) {
       warning("alpha must be a fraction between 0 and 1; will be reset to .01")
       alpha<-.01
@@ -21,39 +21,60 @@ function(obj,alpha=0.01,nr=100) {
     selection<-obj$selection
     nobs<-length(theta)
     ni<-nrow(ipar)
-    chi12<-matrix(NA,nr,ni);rownames(chi12)<-paste0("Rep",1:nr);colnames(chi12)<-paste0("I",selection)
-    chi13<-matrix(NA,nr,ni);rownames(chi13)<-paste0("Rep",1:nr);colnames(chi13)<-paste0("I",selection)
-    chi23<-matrix(NA,nr,ni);rownames(chi23)<-paste0("Rep",1:nr);colnames(chi23)<-paste0("I",selection)
-    pseudo12.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo12.CoxSnell)<-paste0("Rep",1:nr);colnames(pseudo12.CoxSnell)<-paste0("I",selection)
-    pseudo13.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo13.CoxSnell)<-paste0("Rep",1:nr);colnames(pseudo13.CoxSnell)<-paste0("I",selection)
-    pseudo23.CoxSnell<-matrix(NA,nr,ni);rownames(pseudo23.CoxSnell)<-paste0("Rep",1:nr);colnames(pseudo23.CoxSnell)<-paste0("I",selection)
-    pseudo12.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo12.Nagelkerke)<-paste0("Rep",1:nr);colnames(pseudo12.Nagelkerke)<-paste0("I",selection)
-    pseudo13.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo13.Nagelkerke)<-paste0("Rep",1:nr);colnames(pseudo13.Nagelkerke)<-paste0("I",selection)
-    pseudo23.Nagelkerke<-matrix(NA,nr,ni);rownames(pseudo23.Nagelkerke)<-paste0("Rep",1:nr);colnames(pseudo23.Nagelkerke)<-paste0("I",selection)
-    pseudo12.McFadden<-matrix(NA,nr,ni);rownames(pseudo12.McFadden)<-paste0("Rep",1:nr);colnames(pseudo12.McFadden)<-paste0("I",selection)
-    pseudo13.McFadden<-matrix(NA,nr,ni);rownames(pseudo13.McFadden)<-paste0("Rep",1:nr);colnames(pseudo13.McFadden)<-paste0("I",selection)
-    pseudo23.McFadden<-matrix(NA,nr,ni);rownames(pseudo23.McFadden)<-paste0("Rep",1:nr);colnames(pseudo23.McFadden)<-paste0("I",selection)
-    beta12<-matrix(NA,nr,ni);rownames(beta12)<-paste0("Rep",1:nr);colnames(beta12)<-paste0("I",selection)
     cat(paste0("Start time: ",date(),"\n\n"))
-    for (r in 1:nr) {
-      group.random<-group[sample(nobs)]
-      out<-rundif(1:ni,resp,theta,group.random,options$criterion,options$alpha,options$beta.change,options$pseudo.R2,options$R2.change,weights)
-      chi12[r,]<-out$stats$chi12
-      chi13[r,]<-out$stats$chi13
-      chi23[r,]<-out$stats$chi23
-      pseudo12.CoxSnell[r,]<-out$stats$pseudo12.CoxSnell
-      pseudo13.CoxSnell[r,]<-out$stats$pseudo13.CoxSnell
-      pseudo23.CoxSnell[r,]<-out$stats$pseudo23.CoxSnell
-      pseudo12.Nagelkerke[r,]<-out$stats$pseudo12.Nagelkerke
-      pseudo13.Nagelkerke[r,]<-out$stats$pseudo13.Nagelkerke
-      pseudo23.Nagelkerke[r,]<-out$stats$pseudo23.Nagelkerke
-      pseudo12.McFadden[r,]<-out$stats$pseudo12.McFadden
-      pseudo13.McFadden[r,]<-out$stats$pseudo13.McFadden
-      pseudo23.McFadden[r,]<-out$stats$pseudo23.McFadden
-      beta12[r,]<-out$stats$beta
-      cat(paste0(" Replication: ",r,"\n"))
+    cl<-makeCluster(detectCores()-1)
+    registerDoSNOW(cl)
+    pb<-txtProgressBar(0,nr,style=3)
+    progress<-function(n) setTxtProgressBar(pb,n)
+    opts<-list(progress=progress)
+    output<-foreach(
+        i=1:nr,
+        .options.snow=opts
+    ) %dopar% {
+        group.random<-group[sample(nobs)]
+        rundif(1:ni,resp,theta,group.random,options$criterion,options$alpha,options$beta.change,options$pseudo.R2,options$R2.change,weights)
     }
+    stopCluster(cl)
     cat(paste0("\nEnd time: ",date(),"\n"))
+    chi12<-do.call("rbind",lapply(lapply(output,"[[", 1),"[[","chi12"))
+    chi13<-do.call("rbind",lapply(lapply(output,"[[", 1),"[[","chi13"))
+    chi23<-do.call("rbind",lapply(lapply(output,"[[", 1),"[[","chi23"))
+    pseudo12.CoxSnell<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo12.CoxSnell"))
+    pseudo13.CoxSnell<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo13.CoxSnell"))
+    pseudo23.CoxSnell<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo23.CoxSnell"))
+    pseudo12.Nagelkerke<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo12.Nagelkerke"))
+    pseudo13.Nagelkerke<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo13.Nagelkerke"))
+    pseudo23.Nagelkerke<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo23.Nagelkerke"))
+    pseudo12.McFadden<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo12.McFadden"))
+    pseudo13.McFadden<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo13.McFadden"))
+    pseudo23.McFadden<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","pseudo23.McFadden"))
+    beta12<-do.call("rbind",lapply(lapply(output,"[[",1),"[[","beta12"))
+    rownames(chi12)<-paste0("Rep",1:nr)
+    colnames(chi12)<-paste0("I",selection)
+    rownames(chi13)<-paste0("Rep",1:nr)
+    colnames(chi13)<-paste0("I",selection)
+    rownames(chi23)<-paste0("Rep",1:nr)
+    colnames(chi23)<-paste0("I",selection)
+    rownames(pseudo12.CoxSnell)<-paste0("Rep",1:nr)
+    colnames(pseudo12.CoxSnell)<-paste0("I",selection)
+    rownames(pseudo13.CoxSnell)<-paste0("Rep",1:nr)
+    colnames(pseudo13.CoxSnell)<-paste0("I",selection)
+    rownames(pseudo23.CoxSnell)<-paste0("Rep",1:nr)
+    colnames(pseudo23.CoxSnell)<-paste0("I",selection)
+    rownames(pseudo12.Nagelkerke)<-paste0("Rep",1:nr)
+    colnames(pseudo12.Nagelkerke)<-paste0("I",selection)
+    rownames(pseudo13.Nagelkerke)<-paste0("Rep",1:nr)
+    colnames(pseudo13.Nagelkerke)<-paste0("I",selection)
+    rownames(pseudo23.Nagelkerke)<-paste0("Rep",1:nr)
+    colnames(pseudo23.Nagelkerke)<-paste0("I",selection)
+    rownames(pseudo12.McFadden)<-paste0("Rep",1:nr)
+    colnames(pseudo12.McFadden)<-paste0("I",selection)
+    rownames(pseudo13.McFadden)<-paste0("Rep",1:nr)
+    colnames(pseudo13.McFadden)<-paste0("I",selection)
+    rownames(pseudo23.McFadden)<-paste0("Rep",1:nr)
+    colnames(pseudo23.McFadden)<-paste0("I",selection)
+    rownames(beta12)<-paste0("Rep",1:nr)
+    colnames(beta12)<-paste0("I",selection)
     stat<-c("chi12","chi13","chi23","pseudo12.CoxSnell","pseudo13.CoxSnell","pseudo23.CoxSnell","pseudo12.Nagelkerke","pseudo13.Nagelkerke","pseudo23.Nagelkerke","pseudo12.McFadden","pseudo13.McFadden","pseudo23.McFadden","beta12")
     cutoff<-matrix(NA,ni,length(stat))
     for (i in 1:ni) {

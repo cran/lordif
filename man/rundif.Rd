@@ -1,6 +1,5 @@
 \name{rundif}
 \alias{rundif}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   runs ordinal logistic regression DIF
 }
@@ -10,7 +9,6 @@
 \usage{
 rundif(item, resp, theta, gr, criterion, alpha, beta.change, pseudo.R2, R2.change, wt)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{item}{ a selection of items to be analyzed }
   \item{resp}{ a data frame containing item responses }
@@ -40,15 +38,9 @@ Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detec
   Seung W. Choi <choi.phd@gmail.com>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
   \code{\link{runolr}},  \code{\link{lordif}}
 }
 \examples{
 \dontrun{rundif(item,resp,theta,gr)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

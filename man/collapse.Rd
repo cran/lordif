@@ -1,6 +1,5 @@
 \name{collapse}
 \alias{collapse}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ collapses response categories }
 \description{
   Collapses response categories if cell frequencies by group are below a minimum
@@ -9,7 +8,6 @@
 \usage{
   collapse(resp, group, minCell)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{resp}{ a vector of item responses }
   \item{group}{ a vector of group designations }
@@ -35,5 +33,3 @@
   ## returns  c(1,1,2,1,1,2,2,1,2,2,1,2,2,1,1,2,1,2,2,2,2,1,2,2)
   ## response categories 2 and 3 are collapsed
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

@@ -1,6 +1,5 @@
 \name{calctheta}
 \alias{calctheta}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ calculates EAP theta estimates and associated standard errors }
 \description{
   Calculates Expected A Posteriori (EAP) theta estimates and
@@ -9,7 +8,6 @@
 \usage{
   calctheta(ipar, resp.data, theta, prior.mean = 0, prior.sd = 1, model = "GRM")
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{ipar}{ a data frame containing the following columns: a, cb1, cb2,..., cb(maxCat) }
   \item{resp.data}{ a data frame containing item responses }
@@ -37,5 +35,3 @@
 \examples{
   \dontrun{calctheta(ipar,resp.data,model="GPCM")}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

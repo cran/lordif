@@ -1,15 +1,12 @@
 \name{lordif-package}
 \alias{lordif-package}
-%\alias{lordif}
 \docType{package}
 \title{
   Logistic Ordinal Regression Differential Item Functioning using IRT
-%\packageTitle{lordif}
 }
 \description{
   Analysis of Differential Item Functioning (DIF) for dichotomous and polytomous items,  
   using an iterative hybrid of (ordinal) logistic regression and item response theory (IRT).
-%\packageDescription{lordif}
 }
 \details{
 \tabular{ll}{
@@ -20,9 +17,6 @@ Date: \tab 2016-3-3\cr
 License: \tab GPL (>=2)\cr
 LazyLoad: \tab yes\cr
 }
-%The DESCRIPTION file:
-%\packageDESCRIPTION{lordif}
-%\packageIndices{lordif}
   Ordinal logistic regression (OLR) provides a flexible framework for detecting various  
   types of DIF. Previous efforts extended the framework by substituting the matching variable  
   based on sum scores with IRT based trait scores and by employing an iterative process of  
@@ -32,12 +26,10 @@ LazyLoad: \tab yes\cr
   values for various DIF statistics and effect size measures.
 }
 \author{
-%\packageAuthor{lordif}
-Seung W. Choi, with contributions from  
+  Seung W. Choi, with contributions from  
   Laura E. Gibbons and Paul K. Crane
   
-%Maintainer: \packageMaintainer{lordif}
-Maintainer: Seung W. Choi <choi.phd@gmail.com>
+  Maintainer: Seung W. Choi <choi.phd@gmail.com>
 }
 \references{
   Choi, S. W., Gibbons, L. E., Crane, P. K. (2011). lordif: An R Package for Detecting Differential Item Functioning Using Iterative Hybrid Ordinal Logistic Regression/Item Response Theory and Monte Carlo Simulations. Journal of Statistical Software, 39(8), 1-30. URL http://www.jstatsoft.org/v39/i08/.
@@ -47,7 +39,7 @@ Maintainer: Seung W. Choi <choi.phd@gmail.com>
 }
 \keyword{ package }
 \seealso{
-  \code{\link[mirt:mirt]{mirt}}, \code{\link[rms:rms]{rms}}
+  \code{\link[mirt:mirt]{mirt::mirt()}}, \code{\link[rms:lrm]{rms::lrm()}}
 }
 \examples{
 ##load PROMIS Anxiety sample data (n=766)

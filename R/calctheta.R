@@ -1,7 +1,7 @@
 calctheta <-
 function(ipar,resp.data,theta,prior.mean=0.0,prior.sd=1.0,model="GRM") {
     if (!(model %in% c("GRM","GPCM"))) {
-      warning("model must be either \"GRM\", or \"GPCM\"; will be reset to default")
+      warning("model must be either \"GRM\" or \"GPCM\"; will be reset to default")
       model<-"GRM"
     }
     prior<-dnorm((theta-prior.mean)/prior.sd) 

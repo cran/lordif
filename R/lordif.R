@@ -4,6 +4,8 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
     call<-match.call()
     criterion<-match.arg(criterion)
     pseudo.R2<-match.arg(pseudo.R2)
+    resp.data<-as.data.frame(resp.data)
+    group<-unlist(group,use.names=FALSE)
     tni<-ncol(resp.data)
     if (!(criterion %in% c("Chisqr","R2","Beta"))) {
       warning("criterion must be one of the following: \"Chisqr\", \"R2\", or \"Beta\"; will be reset to \"Chisqr\"")
@@ -80,7 +82,7 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
       if (sum(weights)>0 && normwt) weights <- weights * nobs / sum(weights)
     }
     if (nobs != length(group)) stop("nrow of resp.data and length of group are non-conformable") 
-    if (ni<4) stop("number of items must be at least 4") 
+    if (ni<3) stop("number of items must be at least 3") 
     compare<-function(x,table) {
       for (i in 1:nrow(table)) {
         if (all(table[i,]==x)) return(TRUE)
@@ -98,7 +100,7 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
     item.labels<-names(resp.recoded)
     meanraw<-apply(resp.recoded,1,mean,na.rm=T)
     outraw<-rundif(selection,resp.recoded,meanraw,group,criterion,alpha,beta.change,pseudo.R2,R2.change,weights)
-    calib<-mirt(resp.recoded,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control)
+    calib<-mirt(resp.recoded,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control,verbose=F)
     ipar<-extract(calib)
     row.names(ipar)<-item.labels
     theta<-calctheta(ipar,resp.recoded,theta.grid,model=model)
@@ -123,7 +125,7 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
           iter<-iter+1
           flag.matrix<-rbind(flag.matrix,flags)
           sparse.matrix<-separate(resp.recoded,flags,group)
-          calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control)
+          calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control,verbose=F)
           ipar.sparse<-extract(calib.sparse) 
           eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid,model=model)
           ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -141,7 +143,7 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
           if (compare(flags,flag.matrix) || iter==maxIter) {
             if (!all(pre.flags==flags)) {
               sparse.matrix<-separate(resp.recoded,flags,group)
-              calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control)
+              calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control,verbose=F)
               ipar.sparse<-extract(calib.sparse) 
               eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid,model=model)
               ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -153,7 +155,7 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
         }
         if (!compare(flags,flag.matrix) && iter==maxIter) {
           sparse.matrix<-separate(resp.recoded,flags,group)
-          calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control)
+          calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control,verbose=F)
           ipar.sparse<-extract(calib.sparse)
           eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid,model=model) 
           ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]
@@ -168,7 +170,7 @@ function(resp.data,group,selection=NULL,criterion=c("Chisqr","R2","Beta"),pseudo
       flags[anchor]<-FALSE
       sparse.matrix<-separate(resp.recoded,flags,group)
       cat(" (mirt)\n")
-      calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control)
+      calib.sparse<-mirt(sparse.matrix,1,itemtype=ifelse(model=="GPCM","gpcm","graded"),technical=control,verbose=F)
       ipar.sparse<-extract(calib.sparse)
       eqconst<-equate(ipar[!flags,],ipar.sparse[1:sum(!flags),],theta.grid,model=model) 
       ipar.sparse[,1]<-ipar.sparse[,1]/eqconst[1]

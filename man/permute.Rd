@@ -1,6 +1,5 @@
 \name{permute}
 \alias{permute}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   performs permutation test for empirical cutoff thresholds
 }
@@ -10,7 +9,6 @@
 \usage{
 permute(obj, alpha = 0.01, nr = 100)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{obj}{ an object returned from \code{\link{lordif}} }
   \item{alpha}{ desired significance level (e.g., .01) }
@@ -50,8 +48,6 @@ permute(obj, alpha = 0.01, nr = 100)
   nr must be a large integer (e.g., 500) for smooth distributions.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
   \code{\link{montecarlo}}, \code{\link{lordif}}
 }
@@ -64,7 +60,4 @@ permute(obj, alpha = 0.01, nr = 100)
 ##the following takes several minutes
 \dontrun{age.DIF.MC <- permute(age.DIF,alpha=0.01,nr=100)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

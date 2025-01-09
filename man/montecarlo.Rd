@@ -1,6 +1,5 @@
 \name{montecarlo}
 \alias{montecarlo}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   performs Monte Carlo simulations to generate empirical distributions
 }
@@ -10,7 +9,6 @@
 \usage{
 montecarlo(obj, alpha = 0.01, nr = 100)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{obj}{ an object returned from \code{\link{lordif}} }
   \item{alpha}{ desired significance level (e.g., .01) }
@@ -51,8 +49,6 @@ montecarlo(obj, alpha = 0.01, nr = 100)
   nr must be a large integer (e.g., 500) to generate smooth distributions.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
   \code{\link{permute}}, \code{\link{lordif}}
 }
@@ -65,7 +61,4 @@ montecarlo(obj, alpha = 0.01, nr = 100)
 ##the following takes several minutes
 \dontrun{age.DIF.MC <- montecarlo(age.DIF,alpha=0.01,nr=100)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

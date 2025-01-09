@@ -3,7 +3,7 @@
 \docType{data}
 \title{A Measure of Anxiety}
 \description{
-  The data contains responses from 766 people sampled from a general population to the PROMIS Anxiety scale (\url{http://www.nihpromis.org}) composed of 29 Likert-type questions with a common rating scale (1=Never, 2=Rarely, 3=Sometimes, 4=Often, and 5=Always).
+  The data contains responses from 766 people sampled from a general population to the PROMIS Anxiety scale (\url{https://www.healthmeasures.net/explore-measurement-systems/promis/}) composed of 29 Likert-type questions with a common rating scale (1=Never, 2=Rarely, 3=Sometimes, 4=Often, and 5=Always).
 }
 \usage{data(Anxiety)}
 \format{
@@ -44,10 +44,10 @@
   }
 }
 \source{
-  \url{http://www.nihpromis.org}
+  \url{https://www.healthmeasures.net/explore-measurement-systems/promis/}
 }
 \references{
-  PROMIS Cooperative Group. Unpublished Manual for the Patient-Reported Outcomes Measurement Information System (PROMIS) Version 1.1. October, 2008: \url{http://www.nihpromis.org}
+  PROMIS Cooperative Group. Unpublished Manual for the Patient-Reported Outcomes Measurement Information System (PROMIS) Version 1.1. October, 2008: \url{https://www.healthmeasures.net/explore-measurement-systems/promis/}
 }
 \examples{
   \dontrun{data(Anxiety)}

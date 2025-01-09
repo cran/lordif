@@ -1,6 +1,5 @@
 \name{tcc}
 \alias{tcc}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   computes a test characteristic curve (tcc)
 }
@@ -10,7 +9,7 @@
 \usage{
   tcc(a, cb, theta, model = "GRM")
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{a}{ a vector of slope parameters }
   \item{cb}{ a matrix of category boundary/threshold parameters }
@@ -29,8 +28,6 @@
   Seung W. Choi <choi.phd@gmail.com>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
   \code{\link{probgrm}}, \code{\link{probgpcm}}
 }
@@ -38,7 +35,3 @@
 \dontrun{tcc(a,cb,theta,model="GRM")}
 \dontrun{tcc(a,cb,theta,model="GPCM")}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,6 +1,5 @@
 \name{getcutoff}
 \alias{getcutoff}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ determines a cutoff threshold }
 \description{
   Determines an empirical cutoff value for statistics generated from a Monte Carlo simulation.
@@ -8,7 +7,6 @@
 \usage{
   getcutoff(stat, alpha, reverse)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{stat}{ a vector containing statistics sampled from a Monte Carlo simulation }
   \item{alpha}{ a p-value specifying the quantile of the statistics to be determined, e.g., (alpha x 100)th percentile }
@@ -32,5 +30,3 @@ getcutoff(runif(1000),0.01,TRUE)
 #bottom 1 percent
 getcutoff(runif(1000),0.01,FALSE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.

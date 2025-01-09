@@ -1,6 +1,5 @@
 \name{runolr}
 \alias{runolr}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   runs ordinal logistic regression models
 }
@@ -10,7 +9,6 @@
 \usage{
 runolr(rv, ev, gr, wt)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{rv}{ a response variable }
   \item{ev}{ an explanatory variable (e.g., conditioning variable) }
@@ -61,15 +59,9 @@ runolr(rv, ev, gr, wt)
   Seung W. Choi <choi.phd@gmail.com>
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-  \code{\link{rundif}},  \code{\link{lordif}}, \code{\link[rms:rms]{rms}}
+  \code{\link{rundif}},  \code{\link{lordif}}, \code{\link[rms:lrm]{rms::lrm()}}
 }
 \examples{
 \dontrun{runolr(rv, ev, gr)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

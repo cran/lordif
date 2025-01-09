@@ -5,15 +5,15 @@ function(a,cb,theta,model="GRM") {
       model<-"GRM"
     }
     ni<-length(a)
-    T<-numeric(length(theta))
+    TCC<-numeric(length(theta))
     if (model=="GPCM") {
       for (i in 1:ni) {
-        T<-T+probgpcm(theta,a[i],cb[i,])%*%seq(0,sum(!is.na(cb[i,])))
+        TCC<-TCC+probgpcm(theta,a[i],cb[i,])%*%seq(0,sum(!is.na(cb[i,])))
       }
     } else {
       for (i in 1:ni) {
-        T<-T+probgrm(theta,a[i],cb[i,])%*%seq(0,sum(!is.na(cb[i,])))
+        TCC<-TCC+probgrm(theta,a[i],cb[i,])%*%seq(0,sum(!is.na(cb[i,])))
       }
     }
-    return(T)
+    return(TCC)
   }

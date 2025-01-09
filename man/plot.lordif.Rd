@@ -1,6 +1,5 @@
 \name{plot.lordif}
 \alias{plot.lordif}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   Plot method for lordif class
 }
@@ -8,14 +7,14 @@
   plots diagnostic graphs for items flagged for DIF
 }
 \usage{
-  \method{plot}{lordif}(x, labels = c("Reference", "Focal"), width = 7, height = 7, \dots)
+  \method{plot}{lordif}(x, labels = c("Reference", "Focal"), width = 7, height = 7, BW = FALSE, \dots)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{ output from \code{\link{lordif}} }
   \item{labels}{ labels for group levels, e.g., c("Male","Female") }
   \item{width}{ width of the canvas of the plotting device in inches }
   \item{height}{ height of the canvas of the plotting device in inches }
+  \item{BW}{ whether to plot in black-and-white rather than in color }
   \item{...}{ extra graphical parameters }
 }
 \details{
@@ -44,8 +43,6 @@
   Produces graphs only if x contains DIF items. No graphs if no DIF items are present.
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
  \code{\link{lordif}} 
 }
@@ -54,7 +51,3 @@
 \dontrun{age.dif <- lordif(Anxiety[paste("R",1:29,sep="")],Anxiety$age)}
 \dontrun{plot(age.dif,labels=c("Younger","Older"),width=8,height=7,cex=0.8,lwd=1)}
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
